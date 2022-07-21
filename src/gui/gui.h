@@ -3,6 +3,7 @@
 #include <GL/glut.h>
 #include <iostream>
 
+#include "../al/game_of_life.h"
 #include "../grid/grid.h"
 #include "../util/random.h"
 #include "../util/timer.h"
@@ -11,7 +12,8 @@ namespace ca {
 
 class GUI {
    public:
-    static Grid grid_;
+    static Grid grid1_;
+    static Grid grid2_;
     static Random random_;
 
    public:
@@ -19,7 +21,7 @@ class GUI {
     ~GUI() = default;
 
     static void DrawGrid(void);
-    static void DrawCell(const Pair& coords);
+    static void DrawCell(const Grid& grid, const uint& idx);
 
     static void SpecialFunc(int key, int x, int y);
     static void KeyboardFunc(unsigned char key, int x, int y);
@@ -29,6 +31,7 @@ class GUI {
 
    private:
     Timer timer_;
+    static uint counter_;
 };
 
 // Grid GUI::grid_ = Grid(1, 2);
