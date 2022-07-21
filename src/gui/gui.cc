@@ -24,9 +24,12 @@ void GUI::DrawGrid(void) {
 }
 
 void GUI::DrawCell(const Pair& coords) {
-    const double dx = 0.05;
+    const double dx = 0.9 / grid_.x();
+    const double width = glutGet(GLUT_WINDOW_WIDTH);
+    const double height = glutGet(GLUT_WINDOW_HEIGHT);
+    const double dy = dx * width / height;
     const double x = dx * (2 * coords.first) + dx - 0.9;
-    const double y = dx * (2 * coords.second) + dx - 0.9;
+    const double y = dy * (2 * coords.second) + dy - 0.9;
     double color1 = 255;
     double color2 = 0;
     double color3 = 0;
@@ -45,10 +48,10 @@ void GUI::DrawCell(const Pair& coords) {
     {  // GL_POLYGON GL_LINE_LOOP
         glColor3f(color1, color2, color3);
 
-        glVertex3f(x - dx, y - dx, 0.0);
-        glVertex3f(x + dx, y - dx, 0.0);
-        glVertex3f(x + dx, y + dx, 0.0);
-        glVertex3f(x - dx, y + dx, 0.0);
+        glVertex3f(x - dx, y - dy, 0.0);
+        glVertex3f(x + dx, y - dy, 0.0);
+        glVertex3f(x + dx, y + dy, 0.0);
+        glVertex3f(x - dx, y + dy, 0.0);
     }
     glEnd();
 }
@@ -58,8 +61,6 @@ void GUI::SpecialFunc(int key, int x, int y) { std::cout << key << std::endl; }
 void GUI::KeyboardFunc(unsigned char key, int x, int y) {
     switch (key) {
         case 'r': {
-            std::cout << "ARRRR" << std::endl;
-
             for (uint i = 0; i < grid_.size(); i++) {
                 grid_.value(i) = random_.RandomNumber();
             }
