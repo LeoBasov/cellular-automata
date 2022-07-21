@@ -34,5 +34,68 @@ TEST(game_of_life, CountNeighbourhood2) {
     ASSERT_EQ(4, CountNeighbourhood(grid, coords));
 }
 
+TEST(game_of_life, Process_Block) {
+    const uint x = 4;
+    const uint y = 4;
+    Grid grid1(x, y);
+    Grid grid2(x, y);
+
+    grid1.value({1, 1}) = 1.0;
+    grid1.value({2, 1}) = 1.0;
+    grid1.value({1, 2}) = 1.0;
+    grid1.value({2, 2}) = 1.0;
+
+    for (uint i = 0; i < grid1.size(); i++) {
+        Process(grid1, grid2, i);
+    }
+
+    for (uint i = 0; i < grid1.size(); i++) {
+        ASSERT_DOUBLE_EQ(grid1.value(i), grid2.value(i));
+    }
+}
+
+TEST(game_of_life, Process_BeeHive) {
+    const uint x = 6;
+    const uint y = 5;
+    Grid grid1(x, y);
+    Grid grid2(x, y);
+
+    grid1.value({2, 1}) = 1.0;
+    grid1.value({3, 1}) = 1.0;
+
+    grid1.value({1, 2}) = 1.0;
+    grid1.value({4, 2}) = 1.0;
+
+    grid1.value({2, 3}) = 1.0;
+    grid1.value({3, 3}) = 1.0;
+
+    for (uint i = 0; i < grid1.size(); i++) {
+        Process(grid1, grid2, i);
+    }
+
+    for (uint i = 0; i < grid1.size(); i++) {
+        ASSERT_DOUBLE_EQ(grid1.value(i), grid2.value(i));
+    }
+}
+
+TEST(game_of_life, Process_Blinker) {
+    const uint x = 5;
+    const uint y = 5;
+    Grid grid1(x, y);
+    Grid grid2(x, y);
+
+    grid1.value({2, 3}) = 1.0;
+    grid1.value({2, 2}) = 1.0;
+    grid1.value({2, 1}) = 1.0;
+
+    for (uint i = 0; i < grid1.size(); i++) {
+        Process(grid1, grid2, i);
+    }
+
+    ASSERT_DOUBLE_EQ(1.0, grid2.value({1, 2}));
+    ASSERT_DOUBLE_EQ(1.0, grid2.value({2, 2}));
+    ASSERT_DOUBLE_EQ(1.0, grid2.value({3, 2}));
+}
+
 }  // namespace game_of_life
 }  // namespace ca
