@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include "dummy.h"
 #include "grid/grid.h"
 
 int main(int argc, char **argv) {
