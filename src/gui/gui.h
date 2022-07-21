@@ -3,6 +3,7 @@
 #include <GL/glut.h>
 
 #include "../grid/grid.h"
+#include "../util/random.h"
 
 namespace ca {
 
