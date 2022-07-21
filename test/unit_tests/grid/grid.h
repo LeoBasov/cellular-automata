@@ -6,6 +6,50 @@
 
 namespace ca {
 
+TEST(Grid, Constructor) {
+    const uint x1 = 3;
+    const uint x2 = 7;
+    const uint x3 = 11;
+    const uint y1 = 13;
+    const uint y2 = 17;
+    const uint y3 = 23;
+    const Grid grid = Grid();
+    const Grid grid1 = Grid(x1, y1);
+    const Grid grid2 = Grid(x2, y2);
+    const Grid grid3 = Grid(x3, y3);
+
+    ASSERT_EQ(1, grid.x());
+    ASSERT_EQ(3, grid1.x());
+    ASSERT_EQ(7, grid2.x());
+    ASSERT_EQ(11, grid3.x());
+
+    ASSERT_EQ(1, grid.y());
+    ASSERT_EQ(13, grid1.y());
+    ASSERT_EQ(17, grid2.y());
+    ASSERT_EQ(23, grid3.y());
+
+    ASSERT_EQ(1, grid.values().size());
+    ASSERT_EQ(x1 * y1, grid1.values().size());
+    ASSERT_EQ(x2 * y2, grid2.values().size());
+    ASSERT_EQ(x3 * y3, grid3.values().size());
+
+    for (const auto& elem : grid.values()) {
+        ASSERT_DOUBLE_EQ(0.0, elem);
+    }
+
+    for (const auto& elem : grid1.values()) {
+        ASSERT_DOUBLE_EQ(0.0, elem);
+    }
+
+    for (const auto& elem : grid2.values()) {
+        ASSERT_DOUBLE_EQ(0.0, elem);
+    }
+
+    for (const auto& elem : grid3.values()) {
+        ASSERT_DOUBLE_EQ(0.0, elem);
+    }
+}
+
 TEST(Grid, Coords) {
     const uint x = 7;
     const uint y = 13;
