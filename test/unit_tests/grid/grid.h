@@ -146,4 +146,21 @@ TEST(Grid, CoordYPlus) {
     ASSERT_EQ(0, coords2.second);
 }
 
+TEST(Grid, CoordYMinus) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    Pair coords1 = {0, 0};
+    Pair coords2 = {6, 12};
+
+    grid.CoordYMinus(coords1);
+    grid.CoordYMinus(coords2);
+
+    ASSERT_EQ(0, coords1.first);
+    ASSERT_EQ(12, coords1.second);
+
+    ASSERT_EQ(6, coords2.first);
+    ASSERT_EQ(11, coords2.second);
+}
+
 }  // namespace ca
