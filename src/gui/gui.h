@@ -5,6 +5,7 @@
 
 #include "../grid/grid.h"
 #include "../util/random.h"
+#include "../util/timer.h"
 
 namespace ca {
 
@@ -22,8 +23,12 @@ class GUI {
 
     static void SpecialFunc(int key, int x, int y);
     static void KeyboardFunc(unsigned char key, int x, int y);
+    static void TimerFunc(int);
 
     void Run(int argc, char** argv);
+
+   private:
+    Timer timer_;
 };
 
 // Grid GUI::grid_ = Grid(1, 2);

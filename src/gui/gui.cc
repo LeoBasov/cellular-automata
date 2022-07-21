@@ -72,7 +72,18 @@ void GUI::KeyboardFunc(unsigned char key, int x, int y) {
     }
 }
 
+void GUI::TimerFunc(int) {
+    for (uint i = 0; i < grid_.size(); i++) {
+        grid_.value(i) = random_.RandomNumber();
+    }
+
+    glutPostRedisplay();
+    glutTimerFunc(1000, TimerFunc, 0);
+}
+
 void GUI::Run(int argc, char **argv) {
+    timer_.Start();
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE);
     glutInitWindowSize(600, 600);
@@ -82,6 +93,8 @@ void GUI::Run(int argc, char **argv) {
 
     glutSpecialFunc(SpecialFunc);
     glutKeyboardFunc(KeyboardFunc);
+
+    glutTimerFunc(1000, TimerFunc, 0);
 
     glutMainLoop();
 }
