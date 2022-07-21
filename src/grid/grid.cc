@@ -12,7 +12,7 @@ uint Grid::y() const { return y_; }
 
 const Vector &Grid::values() const { return values_; }
 
-Pair Grid::Coords(uint idx) const {
+Pair Grid::coords(uint idx) const {
     Pair pair;
 
     pair.first = idx % x_;
@@ -22,5 +22,9 @@ Pair Grid::Coords(uint idx) const {
 }
 
 uint Grid::size() const { return values_.size(); }
+
+double& Grid::value(uint idx) { return values_.at(idx); }
+
+const double& Grid::value(uint idx) const { return values_.at(idx); }
 
 }  // namespace ca
