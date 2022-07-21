@@ -9,8 +9,9 @@ namespace ca {
 TEST(dummy, Test) {
     const int input = 12;
     const int ref = 13;
+    const int result = dummy::Test(input);
 
-    ASSERT_EQ(dummy::Test(input), ref);
+    ASSERT_EQ(ref, result);
 }
 
 }  // namespace ca
