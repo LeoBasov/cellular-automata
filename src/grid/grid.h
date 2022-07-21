@@ -28,6 +28,11 @@ class Grid {
     double& value(const Pair& coords);
     const double& value(const Pair& coords) const;
 
+    void CoordXPlus(Pair& coords) const;
+    void CoordXMinus(Pair& coords) const;
+    void CoordYPlus(Pair& coords) const;
+    void CoordYMinus(Pair& coords) const;
+
    private:
     uint x_ = 1;
     uint y_ = 1;

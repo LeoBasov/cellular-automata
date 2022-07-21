@@ -41,4 +41,36 @@ double& Grid::value(const Pair& coords) { return value(idx(coords)); }
 
 const double& Grid::value(const Pair& coords) const { return value(idx(coords)); }
 
+void Grid::CoordXPlus(Pair& coords) const {
+    if (coords.first == (x_ - 1)) {
+        coords.first = 0;
+    } else {
+        coords.first += 1;
+    }
+}
+
+void Grid::CoordXMinus(Pair& coords) const {
+    if (coords.first == 0) {
+        coords.first = (x_ - 1);
+    } else {
+        coords.first -= 1;
+    }
+}
+
+void Grid::CoordYPlus(Pair& coords) const {
+    if (coords.second == (y_ - 1)) {
+        coords.second = 0;
+    } else {
+        coords.second += 1;
+    }
+}
+
+void Grid::CoordYMinus(Pair& coords) const {
+    if (coords.second == 0) {
+        coords.second = (y_ - 1);
+    } else {
+        coords.second -= 1;
+    }
+}
+
 }  // namespace ca
