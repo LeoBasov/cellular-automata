@@ -3,10 +3,10 @@
 namespace ca {
 
 Grid GUI::grid_;
+Random GUI::random_;
 
 GUI::GUI() {
     grid_ = Grid(10, 10);
-    Random random_;
 
     for (uint i = 0; i < grid_.size(); i++) {
         grid_.value(i) = random_.RandomNumber();
@@ -14,7 +14,7 @@ GUI::GUI() {
 }
 
 void GUI::DrawGrid(void) {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     for (uint i = 0; i < grid_.size(); i++) {
         DrawCell(grid_.coords(i));
@@ -53,6 +53,24 @@ void GUI::DrawCell(const Pair& coords) {
     glEnd();
 }
 
+void GUI::SpecialFunc(int key, int x, int y) { std::cout << key << std::endl; }
+
+void GUI::KeyboardFunc(unsigned char key, int x, int y) {
+    switch (key) {
+        case 'r': {
+            std::cout << "ARRRR" << std::endl;
+
+            for (uint i = 0; i < grid_.size(); i++) {
+                grid_.value(i) = random_.RandomNumber();
+            }
+
+            glutPostRedisplay();
+
+            break;
+        }
+    }
+}
+
 void GUI::Run(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE);
@@ -60,6 +78,10 @@ void GUI::Run(int argc, char **argv) {
     glutInitWindowPosition(100, 100);
     glutCreateWindow("Hello world!");
     glutDisplayFunc(DrawGrid);
+
+    glutSpecialFunc(SpecialFunc);
+    glutKeyboardFunc(KeyboardFunc);
+
     glutMainLoop();
 }
 
