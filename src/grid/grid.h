@@ -3,6 +3,8 @@
 #include <utility>
 #include <vector>
 
+#include "../exception/exception.h"
+
 namespace ca {
 
 using uint = unsigned int;
@@ -19,9 +21,12 @@ class Grid {
     uint y() const;
     const Vector& values() const;
     Pair coords(uint idx) const;
+    uint idx(const Pair& coords) const;
     uint size() const;
     double& value(uint idx);
     const double& value(uint idx) const;
+    double& value(const Pair& coords);
+    const double& value(const Pair& coords) const;
 
    private:
     uint x_ = 1;

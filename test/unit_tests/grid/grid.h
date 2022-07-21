@@ -50,7 +50,7 @@ TEST(Grid, Constructor) {
     }
 }
 
-TEST(Grid, Coords) {
+TEST(Grid, coords) {
     const uint x = 7;
     const uint y = 13;
     const Grid grid = Grid(x, y);
@@ -77,6 +77,22 @@ TEST(Grid, Coords) {
     ASSERT_EQ(1, res3.second);
     ASSERT_EQ(1, res4.second);
     ASSERT_EQ(2, res5.second);
+}
+
+TEST(Grid, idx) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    const Pair coords1 = {0, 0};
+    const Pair coords2 = {5, 3};
+    const Pair coords3 = {6, 12};
+    const Pair coords4 = {7, 13};
+
+    ASSERT_EQ(0, grid.idx(coords1));
+    ASSERT_EQ(3 * x + 5, grid.idx(coords2));
+    ASSERT_EQ(12 * x + 6, grid.idx(coords3));
+
+    EXPECT_THROW(grid.idx(coords4), Exception);
 }
 
 }  // namespace ca
