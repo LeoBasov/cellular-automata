@@ -2,28 +2,42 @@
 
 namespace ca {
 
-GUI::GUI() {}
+Grid GUI::grid_ = Grid();
 
-void GUI::displayMe(void) {
+GUI::GUI() { GUI::grid_ = Grid(1, 1); }
+
+void GUI::DrawGrid(void) {
     glClear(GL_COLOR_BUFFER_BIT);
+
+    for (uint i = 0; i < grid_.size(); i++) {
+        DrawCell(grid_.Coords(i));
+    }
+
+    glFlush();
+}
+
+void GUI::DrawCell(const Pair& coords) {
+    const double dx = 0.1;
+    const double x = dx * (2 * coords.first) + dx;
+    const double y = dx * (2 * coords.second) + dx;
+
     glBegin(GL_LINE_LOOP);
     {  // GL_POLYGON
-        glVertex3f(0.0, 0.0, 0.0);
-        glVertex3f(0.5, 0.0, 0.0);
-        glVertex3f(0.5, 0.5, 0.0);
-        glVertex3f(0.0, 0.5, 0.0);
+        glVertex3f(x - dx, y - dx, 0.0);
+        glVertex3f(x + dx, y - dx, 0.0);
+        glVertex3f(x + dx, y + dx, 0.0);
+        glVertex3f(x - dx, y + dx, 0.0);
     }
     glEnd();
-    glFlush();
 }
 
 void GUI::Run(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE);
-    glutInitWindowSize(400, 300);
+    glutInitWindowSize(600, 600);
     glutInitWindowPosition(100, 100);
     glutCreateWindow("Hello world!");
-    glutDisplayFunc(displayMe);
+    glutDisplayFunc(DrawGrid);
     glutMainLoop();
 }
 

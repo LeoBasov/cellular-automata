@@ -21,4 +21,6 @@ Pair Grid::Coords(uint idx) const {
     return pair;
 }
 
+uint Grid::size() const { return values_.size(); }
+
 }  // namespace ca

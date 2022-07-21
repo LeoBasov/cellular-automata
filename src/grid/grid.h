@@ -19,6 +19,7 @@ class Grid {
     uint y() const;
     const Vector& values() const;
     Pair Coords(uint idx) const;
+    uint size() const;
 
    private:
     uint x_ = 1;
