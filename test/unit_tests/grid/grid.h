@@ -190,17 +190,22 @@ TEST(Grid, CoordYPlus_Idx) {
     const Grid grid = Grid(x, y);
     Pair coords1 = {5, 3};
     Pair coords2 = {6, 12};
+    Pair coords3 = {3, 0};
     const uint idx1 = grid.idx(coords1);
     const uint idx2 = grid.idx(coords2);
+    const uint idx3 = grid.idx(coords3);
 
     const uint idx1_new = grid.CoordYPlus(idx1);
     const uint idx2_new = grid.CoordYPlus(idx2);
+    const uint idx3_new = grid.CoordYPlus(idx3);
 
     grid.CoordYPlus(coords1);
     grid.CoordYPlus(coords2);
+    grid.CoordYPlus(coords3);
 
     ASSERT_EQ(grid.idx(coords1), idx1_new);
     ASSERT_EQ(grid.idx(coords2), idx2_new);
+    ASSERT_EQ(grid.idx(coords3), idx3_new);
 }
 
 TEST(Grid, CoordYMinus_Coords) {
@@ -226,17 +231,22 @@ TEST(Grid, CoordYMinus_Idx) {
     const Grid grid = Grid(x, y);
     Pair coords1 = {0, 0};
     Pair coords2 = {6, 12};
+    Pair coords3 = {5, 0};
     const uint idx1 = grid.idx(coords1);
     const uint idx2 = grid.idx(coords2);
+    const uint idx3 = grid.idx(coords3);
 
     const uint idx1_new = grid.CoordYMinus(idx1);
     const uint idx2_new = grid.CoordYMinus(idx2);
+    const uint idx3_new = grid.CoordYMinus(idx3);
 
     grid.CoordYMinus(coords1);
     grid.CoordYMinus(coords2);
+    grid.CoordYMinus(coords3);
 
     ASSERT_EQ(grid.idx(coords1), idx1_new);
     ASSERT_EQ(grid.idx(coords2), idx2_new);
+    ASSERT_EQ(grid.idx(coords3), idx3_new);
 }
 
 }  // namespace ca
