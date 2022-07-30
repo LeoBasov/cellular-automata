@@ -60,11 +60,11 @@ TEST(game_of_life, Process_BeeHive) {
     Grid grid1(x, y);
     Grid grid2(x, y);
 
-    grid1.value({2, 1}) = 1.0;
-    grid1.value({3, 1}) = 1.0;
-
     grid1.value({1, 2}) = 1.0;
     grid1.value({4, 2}) = 1.0;
+
+    grid1.value({2, 1}) = 1.0;
+    grid1.value({3, 1}) = 1.0;
 
     grid1.value({2, 3}) = 1.0;
     grid1.value({3, 3}) = 1.0;
@@ -73,7 +73,7 @@ TEST(game_of_life, Process_BeeHive) {
         Process(grid1, grid2, i);
     }
 
-    for (uint i = 0; i < grid1.size(); i++) {
+    for (uint i = 0; i < grid2.size(); i++) {
         ASSERT_DOUBLE_EQ(grid1.value(i), grid2.value(i));
     }
 }
