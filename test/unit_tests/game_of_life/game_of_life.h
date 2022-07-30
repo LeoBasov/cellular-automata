@@ -101,7 +101,7 @@ TEST(game_of_life, Process_Block2) {
     }
 }
 
-TEST(game_of_life, Process_BeeHive) {
+TEST(game_of_life, Process_BeeHive1) {
     const uint x = 6;
     const uint y = 5;
     Grid grid1(x, y);
@@ -122,6 +122,34 @@ TEST(game_of_life, Process_BeeHive) {
 
     for (uint i = 0; i < grid2.size(); i++) {
         ASSERT_DOUBLE_EQ(grid1.value(i), grid2.value(i));
+    }
+}
+
+TEST(game_of_life, Process_BeeHive2) {
+    const uint x = 6;
+    const uint y = 5;
+    RectGrid grid1(x, y);
+    RectGrid grid2(x, y);
+
+    grid1.active_ = true;
+
+    grid1.value(1, 2) = 1.0;
+    grid1.value(4, 2) = 1.0;
+
+    grid1.value(2, 1) = 1.0;
+    grid1.value(3, 1) = 1.0;
+
+    grid1.value(2, 3) = 1.0;
+    grid1.value(3, 3) = 1.0;
+
+    Process(grid1, grid2);
+
+    int count = CountNeighbourhood(grid1, 0, 2);
+
+    for (size_t x = 0; x < grid1.size_x(); x++) {
+        for (size_t y = 0; y < grid1.size_y(); y++) {
+            ASSERT_DOUBLE_EQ(grid1.value(x, y), grid2.value(x, y));
+        }
     }
 }
 
