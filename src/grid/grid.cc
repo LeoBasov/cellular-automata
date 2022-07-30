@@ -79,4 +79,6 @@ uint Grid::CoordXMinus(const uint& idx) const { return idx % x_ == 0 ? idx + x_ 
 
 uint Grid::CoordYPlus(const uint& idx) const { return idx / x_ == y_ - 1 ? x_ - 1 : idx + x_; }
 
+uint Grid::CoordYMinus(const uint& idx) const { return idx / x_ == 0 ? (y_ - 1) * x_ : idx - x_; }
+
 }  // namespace ca

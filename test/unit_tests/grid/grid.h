@@ -203,7 +203,7 @@ TEST(Grid, CoordYPlus_Idx) {
     ASSERT_EQ(grid.idx(coords2), idx2_new);
 }
 
-TEST(Grid, CoordYMinus) {
+TEST(Grid, CoordYMinus_Coords) {
     const uint x = 7;
     const uint y = 13;
     const Grid grid = Grid(x, y);
@@ -218,6 +218,25 @@ TEST(Grid, CoordYMinus) {
 
     ASSERT_EQ(6, coords2.first);
     ASSERT_EQ(11, coords2.second);
+}
+
+TEST(Grid, CoordYMinus_Idx) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    Pair coords1 = {0, 0};
+    Pair coords2 = {6, 12};
+    const uint idx1 = grid.idx(coords1);
+    const uint idx2 = grid.idx(coords2);
+
+    const uint idx1_new = grid.CoordYMinus(idx1);
+    const uint idx2_new = grid.CoordYMinus(idx2);
+
+    grid.CoordYMinus(coords1);
+    grid.CoordYMinus(coords2);
+
+    ASSERT_EQ(grid.idx(coords1), idx1_new);
+    ASSERT_EQ(grid.idx(coords2), idx2_new);
 }
 
 }  // namespace ca
