@@ -112,23 +112,38 @@ TEST(Grid, CoordXPlus_Coords) {
     ASSERT_EQ(12, coords2.second);
 }
 
-TEST(Grid, CoordXPlus_Idx) {
+TEST(Grid, CoordXPlus_Idx_1) {
     const uint x = 7;
     const uint y = 13;
     const Grid grid = Grid(x, y);
     Pair coords1 = {5, 3};
     Pair coords2 = {6, 12};
+    Pair coords3 = {4, 0};
     const uint idx1 = grid.idx(coords1);
     const uint idx2 = grid.idx(coords2);
+    const uint idx3 = grid.idx(coords3);
 
     const uint idx1_new = grid.CoordXPlus(idx1);
     const uint idx2_new = grid.CoordXPlus(idx2);
+    const uint idx3_new = grid.CoordXPlus(idx3);
 
     grid.CoordXPlus(coords1);
     grid.CoordXPlus(coords2);
+    grid.CoordXPlus(coords3);
 
     ASSERT_EQ(grid.idx(coords1), idx1_new);
     ASSERT_EQ(grid.idx(coords2), idx2_new);
+    ASSERT_EQ(grid.idx(coords3), idx3_new);
+}
+
+TEST(Grid, CoordXPlus_Idx_2) {
+    const uint x = 6;
+    const uint y = 5;
+    const Grid grid = Grid(x, y);
+    const uint idx1 = 4;
+    const uint idx1_new = grid.CoordXPlus(idx1);
+
+    ASSERT_EQ(5, idx1_new);
 }
 
 TEST(Grid, CoordXMinus_Coords) {
