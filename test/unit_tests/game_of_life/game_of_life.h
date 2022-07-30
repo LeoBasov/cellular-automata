@@ -163,7 +163,7 @@ TEST(game_of_life, Process_Blinker2) {
     ASSERT_DOUBLE_EQ(1.0, grid2.value(3, 2));
 }
 
-TEST(game_of_life, Process_Glider) {
+TEST(game_of_life, Process_Glider1) {
     const uint x = 6;
     const uint y = 6;
     Grid grid1(x, y);
@@ -198,6 +198,41 @@ TEST(game_of_life, Process_Glider) {
 
     ASSERT_DOUBLE_EQ(1.0, grid1.value({4, 2}));
     ASSERT_DOUBLE_EQ(1.0, grid1.value({4, 3}));
+}
+
+TEST(game_of_life, Process_Glider2) {
+    const uint x = 6;
+    const uint y = 6;
+    RectGrid grid1(x, y);
+    RectGrid grid2(x, y);
+
+    grid1.active_ = true;
+
+    grid1.value(1, 3) = 1.0;
+    grid1.value(2, 2) = 1.0;
+    grid1.value(3, 2) = 1.0;
+    grid1.value(3, 3) = 1.0;
+    grid1.value(3, 4) = 1.0;
+
+    Process(grid1, grid2);
+
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(2, 2));
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(2, 4));
+
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(3, 2));
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(3, 3));
+
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(4, 3));
+
+    Process(grid1, grid2);
+
+    ASSERT_DOUBLE_EQ(1.0, grid1.value(2, 2));
+
+    ASSERT_DOUBLE_EQ(1.0, grid1.value(3, 2));
+    ASSERT_DOUBLE_EQ(1.0, grid1.value(3, 4));
+
+    ASSERT_DOUBLE_EQ(1.0, grid1.value(4, 2));
+    ASSERT_DOUBLE_EQ(1.0, grid1.value(4, 3));
 }
 
 }  // namespace game_of_life

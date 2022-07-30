@@ -34,12 +34,18 @@ void Process(RectGrid& grid1, RectGrid& grid2) {
                 Process(grid1, grid2, x, y);
             }
         }
+
+        grid1.active_ = false;
+        grid2.active_ = true;
     } else if ((!grid1.active_) && grid2.active_) {
         for (size_t x = 0; x < grid1.size_x(); x++) {
             for (size_t y = 0; y < grid1.size_y(); y++) {
                 Process(grid2, grid1, x, y);
             }
         }
+
+        grid1.active_ = true;
+        grid2.active_ = false;
     } else {
         throw Exception("wrong active state of grids", __PRETTY_FUNCTION__);
     }
