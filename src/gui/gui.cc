@@ -8,7 +8,7 @@ Random GUI::random_;
 uint GUI::counter_;
 
 GUI::GUI() {
-    const uint size = 100;
+    const uint size = 50;
 
     counter_ = 100;
 
@@ -58,6 +58,21 @@ void GUI::DrawCell(const Grid &grid, const uint &idx) {
     }
 
     glBegin(GL_POLYGON);
+    {  // GL_POLYGON GL_LINE_LOOP
+        glColor3f(color1, color2, color3);
+
+        glVertex3f(x - dx, y - dy, 0.0);
+        glVertex3f(x + dx, y - dy, 0.0);
+        glVertex3f(x + dx, y + dy, 0.0);
+        glVertex3f(x - dx, y + dy, 0.0);
+    }
+    glEnd();
+
+    color1 = 0;
+    color2 = 0;
+    color3 = 0;
+
+    glBegin(GL_LINE_LOOP);
     {  // GL_POLYGON GL_LINE_LOOP
         glColor3f(color1, color2, color3);
 
