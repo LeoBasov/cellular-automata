@@ -1,0 +1,6 @@
+cmake_minimum_required (VERSION 3.10)
+project (ca_tests)
+add_subdirectory (unit_tests)
+add_subdirectory (visualization)
+enable_testing ()
+add_test (NAME MyTest COMMAND unit_tests)
