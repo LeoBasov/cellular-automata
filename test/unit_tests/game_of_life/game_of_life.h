@@ -127,7 +127,7 @@ TEST(game_of_life, Process_BeeHive) {
     }
 }
 
-TEST(game_of_life, Process_Blinker) {
+TEST(game_of_life, Process_Blinker1) {
     const uint x = 5;
     const uint y = 5;
     Grid grid1(x, y);
@@ -144,6 +144,27 @@ TEST(game_of_life, Process_Blinker) {
     ASSERT_DOUBLE_EQ(1.0, grid2.value({1, 2}));
     ASSERT_DOUBLE_EQ(1.0, grid2.value({2, 2}));
     ASSERT_DOUBLE_EQ(1.0, grid2.value({3, 2}));
+}
+
+TEST(game_of_life, Process_Blinker2) {
+    const uint x = 5;
+    const uint y = 5;
+    RectGrid grid1(x, y);
+    RectGrid grid2(x, y);
+
+    grid1.value(2, 3) = 1.0;
+    grid1.value(2, 2) = 1.0;
+    grid1.value(2, 1) = 1.0;
+
+    for (size_t x = 0; x < grid1.size_x(); x++) {
+        for (size_t y = 0; y < grid1.size_y(); y++) {
+            Process(grid1, grid2, x, y);
+        }
+    }
+
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(1, 2));
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(2, 2));
+    ASSERT_DOUBLE_EQ(1.0, grid2.value(3, 2));
 }
 
 TEST(game_of_life, Process_Glider) {
