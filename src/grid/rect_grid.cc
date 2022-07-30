@@ -18,10 +18,7 @@ double& RectGrid::value(int x, int y) {
 }
 
 const double& RectGrid::value(int x, int y) const {
-    x = x < 0 ? x % values_.size() : x;
-    y = y < 0 ? y % values_.front().size() : y;
-
-    return values_.at(x).at(y);
+    return values_.at(x % values_.size()).at(y % values_.front().size());
 }
 
 }  // namespace ca

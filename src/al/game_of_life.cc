@@ -48,5 +48,20 @@ uint CountNeighbourhood(const Grid& grid, const uint idx) {
 
 uint CountNeighbourhood(const Grid& grid, const Pair coords) { return CountNeighbourhood(grid, grid.idx(coords)); }
 
+uint CountNeighbourhood(const RectGrid& grid, const int x, const int y) {
+    uint count = 0;
+
+    count += grid.value(x - 1, y);
+    count += grid.value(x - 1, y - 1);
+    count += grid.value(x, y - 1);
+    count += grid.value(x + 1, y - 1);
+    count += grid.value(x + 1, y);
+    count += grid.value(x + 1, y + 1);
+    count += grid.value(x, y + 1);
+    count += grid.value(x - 1, y + 1);
+
+    return count;
+}
+
 }  // namespace game_of_life
 }  // namespace ca

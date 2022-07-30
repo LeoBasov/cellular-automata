@@ -34,6 +34,31 @@ TEST(game_of_life, CountNeighbourhood2) {
     ASSERT_EQ(4, CountNeighbourhood(grid, coords));
 }
 
+TEST(game_of_life, CountNeighbourhood3) {
+    const int x = 7;
+    const int y = 13;
+    RectGrid grid(x, y);
+
+    grid.value(2, 4) = 1.0;
+    grid.value(3, 5) = 1.0;
+    grid.value(4, 3) = 1.0;
+
+    ASSERT_EQ(3, CountNeighbourhood(grid, 3, 4));
+}
+
+TEST(game_of_life, CountNeighbourhood4) {
+    const uint x = 7;
+    const uint y = 13;
+    RectGrid grid(x, y);
+
+    grid.value(6, 0) = 1.0;
+    grid.value(0, 12) = 1.0;
+    grid.value(5, 12) = 1.0;
+    grid.value(6, 11) = 1.0;
+
+    ASSERT_EQ(4, CountNeighbourhood(grid, 6, 12));
+}
+
 TEST(game_of_life, Process_Block) {
     const uint x = 4;
     const uint y = 4;
