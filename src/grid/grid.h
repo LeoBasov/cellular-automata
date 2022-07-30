@@ -35,6 +35,7 @@ class Grid {
 
     uint CoordXPlus(const uint& idx) const;
     uint CoordXMinus(const uint& idx) const;
+    uint CoordYPlus(const uint& idx) const;
 
     bool active_ = false;
 
