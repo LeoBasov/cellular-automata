@@ -95,7 +95,7 @@ TEST(Grid, idx) {
     EXPECT_THROW(grid.idx(coords4), Exception);
 }
 
-TEST(Grid, CoordXPlus) {
+TEST(Grid, CoordXPlus_Coords) {
     const uint x = 7;
     const uint y = 13;
     const Grid grid = Grid(x, y);
@@ -110,6 +110,25 @@ TEST(Grid, CoordXPlus) {
 
     ASSERT_EQ(0, coords2.first);
     ASSERT_EQ(12, coords2.second);
+}
+
+TEST(Grid, CoordXPlus_Idx) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    Pair coords1 = {5, 3};
+    Pair coords2 = {6, 12};
+    const uint idx1 = grid.idx(coords1);
+    const uint idx2 = grid.idx(coords2);
+
+    const uint idx1_new = grid.CoordXPlus(idx1);
+    const uint idx2_new = grid.CoordXPlus(idx2);
+
+    grid.CoordXPlus(coords1);
+    grid.CoordXPlus(coords2);
+
+    ASSERT_EQ(grid.idx(coords1), idx1_new);
+    ASSERT_EQ(grid.idx(coords2), idx2_new);
 }
 
 TEST(Grid, CoordXMinus) {

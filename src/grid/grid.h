@@ -33,6 +33,8 @@ class Grid {
     void CoordYPlus(Pair& coords) const;
     void CoordYMinus(Pair& coords) const;
 
+    uint CoordXPlus(const uint& idx) const;
+
     bool active_ = false;
 
    private:
