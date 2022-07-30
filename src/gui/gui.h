@@ -1,10 +1,11 @@
 #pragma once
 
 #include <GL/glut.h>
+
 #include <iostream>
 
 #include "../al/game_of_life.h"
-#include "../grid/grid.h"
+#include "../grid/rect_grid.h"
 #include "../util/random.h"
 #include "../util/timer.h"
 
@@ -12,8 +13,8 @@ namespace ca {
 
 class GUI {
    public:
-    static Grid grid1_;
-    static Grid grid2_;
+    static RectGrid grid1_;
+    static RectGrid grid2_;
     static Random random_;
 
    public:
@@ -21,7 +22,7 @@ class GUI {
     ~GUI() = default;
 
     static void DrawGrid(void);
-    static void DrawCell(const Grid& grid, const uint& idx);
+    static void DrawCell(const RectGrid& grid, int x, int y);
 
     static void SpecialFunc(int key, int x, int y);
     static void KeyboardFunc(unsigned char key, int x, int y);
