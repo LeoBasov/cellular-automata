@@ -15,6 +15,18 @@ void Process(const Grid& grid1, Grid& grid2, const uint idx) {
     }
 }
 
+void Process(const RectGrid& grid1, RectGrid& grid2, const int x, const int y) {
+    const uint count = CountNeighbourhood(grid1, x, y);
+
+    if ((grid1.value(x, y) == 1.0) && (count == 2 || count == 3)) {
+        grid2.value(x, y) = 1.0;
+    } else if ((grid1.value(x, y) == 0.0) && (count == 3)) {
+        grid2.value(x, y) = 1.0;
+    } else {
+        grid2.value(x, y) = 0.0;
+    }
+}
+
 uint CountNeighbourhood(const Grid& grid, const uint idx) {
     uint count = 0;
     Pair coords = grid.coords(idx);

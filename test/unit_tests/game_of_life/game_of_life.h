@@ -59,7 +59,7 @@ TEST(game_of_life, CountNeighbourhood4) {
     ASSERT_EQ(4, CountNeighbourhood(grid, 6, 12));
 }
 
-TEST(game_of_life, Process_Block) {
+TEST(game_of_life, Process_Block1) {
     const uint x = 4;
     const uint y = 4;
     Grid grid1(x, y);
@@ -76,6 +76,30 @@ TEST(game_of_life, Process_Block) {
 
     for (uint i = 0; i < grid1.size(); i++) {
         ASSERT_DOUBLE_EQ(grid1.value(i), grid2.value(i));
+    }
+}
+
+TEST(game_of_life, Process_Block2) {
+    const uint x = 4;
+    const uint y = 4;
+    RectGrid grid1(x, y);
+    RectGrid grid2(x, y);
+
+    grid1.value(1, 1) = 1.0;
+    grid1.value(2, 1) = 1.0;
+    grid1.value(1, 2) = 1.0;
+    grid1.value(2, 2) = 1.0;
+
+    for (size_t x = 0; x < grid1.size_x(); x++) {
+        for (size_t y = 0; y < grid1.size_y(); y++) {
+            Process(grid1, grid2, x, y);
+        }
+    }
+
+    for (size_t x = 0; x < grid1.size_x(); x++) {
+        for (size_t y = 0; y < grid1.size_y(); y++) {
+            ASSERT_DOUBLE_EQ(grid1.value(x, y), grid2.value(x, y));
+        }
     }
 }
 
