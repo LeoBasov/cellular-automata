@@ -50,7 +50,7 @@ TEST(Grid, Constructor) {
     }
 }
 
-TEST(Grid, Coords) {
+TEST(Grid, coords) {
     const uint x = 7;
     const uint y = 13;
     const Grid grid = Grid(x, y);
@@ -60,11 +60,11 @@ TEST(Grid, Coords) {
     const uint idx4 = 12;
     const uint idx5 = 17;
 
-    const Pair res1 = grid.Coords(idx1);
-    const Pair res2 = grid.Coords(idx2);
-    const Pair res3 = grid.Coords(idx3);
-    const Pair res4 = grid.Coords(idx4);
-    const Pair res5 = grid.Coords(idx5);
+    const Pair res1 = grid.coords(idx1);
+    const Pair res2 = grid.coords(idx2);
+    const Pair res3 = grid.coords(idx3);
+    const Pair res4 = grid.coords(idx4);
+    const Pair res5 = grid.coords(idx5);
 
     ASSERT_EQ(0, res1.first);
     ASSERT_EQ(6, res2.first);
@@ -77,6 +77,90 @@ TEST(Grid, Coords) {
     ASSERT_EQ(1, res3.second);
     ASSERT_EQ(1, res4.second);
     ASSERT_EQ(2, res5.second);
+}
+
+TEST(Grid, idx) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    const Pair coords1 = {0, 0};
+    const Pair coords2 = {5, 3};
+    const Pair coords3 = {6, 12};
+    const Pair coords4 = {7, 13};
+
+    ASSERT_EQ(0, grid.idx(coords1));
+    ASSERT_EQ(3 * x + 5, grid.idx(coords2));
+    ASSERT_EQ(12 * x + 6, grid.idx(coords3));
+
+    EXPECT_THROW(grid.idx(coords4), Exception);
+}
+
+TEST(Grid, CoordXPlus) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    Pair coords1 = {5, 3};
+    Pair coords2 = {6, 12};
+
+    grid.CoordXPlus(coords1);
+    grid.CoordXPlus(coords2);
+
+    ASSERT_EQ(6, coords1.first);
+    ASSERT_EQ(3, coords1.second);
+
+    ASSERT_EQ(0, coords2.first);
+    ASSERT_EQ(12, coords2.second);
+}
+
+TEST(Grid, CoordXMinus) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    Pair coords1 = {0, 3};
+    Pair coords2 = {6, 12};
+
+    grid.CoordXMinus(coords1);
+    grid.CoordXMinus(coords2);
+
+    ASSERT_EQ(6, coords1.first);
+    ASSERT_EQ(3, coords1.second);
+
+    ASSERT_EQ(5, coords2.first);
+    ASSERT_EQ(12, coords2.second);
+}
+
+TEST(Grid, CoordYPlus) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    Pair coords1 = {5, 3};
+    Pair coords2 = {6, 12};
+
+    grid.CoordYPlus(coords1);
+    grid.CoordYPlus(coords2);
+
+    ASSERT_EQ(5, coords1.first);
+    ASSERT_EQ(4, coords1.second);
+
+    ASSERT_EQ(6, coords2.first);
+    ASSERT_EQ(0, coords2.second);
+}
+
+TEST(Grid, CoordYMinus) {
+    const uint x = 7;
+    const uint y = 13;
+    const Grid grid = Grid(x, y);
+    Pair coords1 = {0, 0};
+    Pair coords2 = {6, 12};
+
+    grid.CoordYMinus(coords1);
+    grid.CoordYMinus(coords2);
+
+    ASSERT_EQ(0, coords1.first);
+    ASSERT_EQ(12, coords1.second);
+
+    ASSERT_EQ(6, coords2.first);
+    ASSERT_EQ(11, coords2.second);
 }
 
 }  // namespace ca
