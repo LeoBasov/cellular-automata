@@ -40,7 +40,8 @@ void GUI::DrawGrid(void) {
         }
     }
 
-    glFlush();
+    // glFlush();
+    glutSwapBuffers();
 }
 
 void GUI::DrawCell(const Grid &grid, int x, int y) {
@@ -105,7 +106,7 @@ void GUI::Run(int argc, char **argv) {
     timer_.Start();
 
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_STENCIL | GLUT_DOUBLE);
     glutInitWindowSize(600, 600);
     glutInitWindowPosition(100, 100);
     glutCreateWindow("Hello world!");
