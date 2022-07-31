@@ -40,26 +40,13 @@ void GUI::DrawGrid(void) {
 }
 
 void GUI::DrawCell(const Grid &grid, int x, int y) {
-    // const Pair coords = grid1_.coords(x);
     const double dx = 0.9 / grid.size_x();
     const double width = glutGet(GLUT_WINDOW_WIDTH);
     const double height = glutGet(GLUT_WINDOW_HEIGHT);
     const double dy = dx * width / height;
-    // const double x = dx * (2 * x) + dx - 0.9;
-    // const double y = dy * (2 * y) + dy - 0.9;
-    double color1 = 255;
-    double color2 = 0;
-    double color3 = 0;
-
-    if (grid.value(x, y) > 0.5) {
-        color1 = 255;
-        color2 = 0;
-        color3 = 0;
-    } else {
-        color1 = 255;
-        color2 = 255;
-        color3 = 255;
-    }
+    const double color1 = 255;
+    const double color2 = 0 + !grid.value(x, y) * 255;
+    const double color3 = 0 + !grid.value(x, y) * 255;
 
     const double x__ = dx * (2 * x) + dx - 0.9;
     const double y__ = dy * (2 * y) + dy - 0.9;
@@ -75,13 +62,9 @@ void GUI::DrawCell(const Grid &grid, int x, int y) {
     }
     glEnd();
 
-    color1 = 0;
-    color2 = 0;
-    color3 = 0;
-
     glBegin(GL_LINE_LOOP);
     {  // GL_POLYGON GL_LINE_LOOP
-        glColor3f(color1, color2, color3);
+        glColor3f(0, 0, 0);
 
         glVertex3f(x__ - dx, y__ - dy, 0.0);
         glVertex3f(x__ + dx, y__ - dy, 0.0);
