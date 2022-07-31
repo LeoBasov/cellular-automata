@@ -2,7 +2,7 @@
 
 namespace ca {
 
-double GameOfLife(const Grid& grid, const int& x, const int& y) {
+double Rectangular(const Grid& grid, const int& x, const int& y) {
     double count = 0;
 
     count += grid.value(x - 1, y);
