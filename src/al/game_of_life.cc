@@ -3,7 +3,7 @@
 namespace ca {
 namespace game_of_life {
 
-void Process(const RectGrid& grid1, RectGrid& grid2, const int x, const int y) {
+void Process(const Grid& grid1, Grid& grid2, const int x, const int y) {
     const uint count = CountNeighbourhood(grid1, x, y);
 
     if ((grid1.value(x, y) == 1.0) && (count == 2 || count == 3)) {
@@ -15,7 +15,7 @@ void Process(const RectGrid& grid1, RectGrid& grid2, const int x, const int y) {
     }
 }
 
-void Process(RectGrid& grid1, RectGrid& grid2) {
+void Process(Grid& grid1, Grid& grid2) {
     if (grid1.active_ && (!grid2.active_)) {
         for (size_t x = 0; x < grid1.size_x(); x++) {
             for (size_t y = 0; y < grid1.size_y(); y++) {
@@ -39,7 +39,7 @@ void Process(RectGrid& grid1, RectGrid& grid2) {
     }
 }
 
-uint CountNeighbourhood(const RectGrid& grid, const int x, const int y) {
+uint CountNeighbourhood(const Grid& grid, const int x, const int y) {
     uint count = 0;
 
     count += grid.value(x - 1, y);

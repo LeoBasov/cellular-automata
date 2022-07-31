@@ -11,11 +11,11 @@ using uint = unsigned int;
 using Pair = std::pair<uint, uint>;
 using vector = std::vector<std::vector<double>>;
 
-class RectGrid {
+class Grid {
    public:
-    RectGrid();
-    RectGrid(uint x, uint y);
-    ~RectGrid() = default;
+    Grid();
+    Grid(uint x, uint y);
+    ~Grid() = default;
 
     size_t size_x() const;
     size_t size_y() const;

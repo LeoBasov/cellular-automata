@@ -10,7 +10,7 @@ namespace game_of_life {
 TEST(game_of_life, CountNeighbourhood1) {
     const int x = 7;
     const int y = 13;
-    RectGrid grid(x, y);
+    Grid grid(x, y);
 
     grid.value(2, 4) = 1.0;
     grid.value(3, 5) = 1.0;
@@ -22,7 +22,7 @@ TEST(game_of_life, CountNeighbourhood1) {
 TEST(game_of_life, CountNeighbourhood2) {
     const uint x = 7;
     const uint y = 13;
-    RectGrid grid(x, y);
+    Grid grid(x, y);
 
     grid.value(6, 0) = 1.0;
     grid.value(0, 12) = 1.0;
@@ -35,8 +35,8 @@ TEST(game_of_life, CountNeighbourhood2) {
 TEST(game_of_life, Process_Block) {
     const uint x = 4;
     const uint y = 4;
-    RectGrid grid1(x, y);
-    RectGrid grid2(x, y);
+    Grid grid1(x, y);
+    Grid grid2(x, y);
 
     grid1.active_ = true;
 
@@ -57,8 +57,8 @@ TEST(game_of_life, Process_Block) {
 TEST(game_of_life, Process_BeeHive) {
     const uint x = 6;
     const uint y = 5;
-    RectGrid grid1(x, y);
-    RectGrid grid2(x, y);
+    Grid grid1(x, y);
+    Grid grid2(x, y);
 
     grid1.active_ = true;
 
@@ -83,8 +83,8 @@ TEST(game_of_life, Process_BeeHive) {
 TEST(game_of_life, Process_Blinker) {
     const uint x = 5;
     const uint y = 5;
-    RectGrid grid1(x, y);
-    RectGrid grid2(x, y);
+    Grid grid1(x, y);
+    Grid grid2(x, y);
 
     grid1.active_ = true;
 
@@ -102,8 +102,8 @@ TEST(game_of_life, Process_Blinker) {
 TEST(game_of_life, Process_Glider) {
     const uint x = 6;
     const uint y = 6;
-    RectGrid grid1(x, y);
-    RectGrid grid2(x, y);
+    Grid grid1(x, y);
+    Grid grid2(x, y);
 
     grid1.active_ = true;
 

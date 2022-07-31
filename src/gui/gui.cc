@@ -2,8 +2,8 @@
 
 namespace ca {
 
-RectGrid GUI::grid1_;
-RectGrid GUI::grid2_;
+Grid GUI::grid1_;
+Grid GUI::grid2_;
 Random GUI::random_;
 uint GUI::counter_;
 
@@ -12,8 +12,8 @@ GUI::GUI() {
 
     counter_ = 100;
 
-    grid1_ = RectGrid(size, size);
-    grid2_ = RectGrid(size, size);
+    grid1_ = Grid(size, size);
+    grid2_ = Grid(size, size);
     grid1_.active_ = true;
 
     for (size_t x = 0; x < grid1_.size_x(); x++) {
@@ -39,7 +39,7 @@ void GUI::DrawGrid(void) {
     glFlush();
 }
 
-void GUI::DrawCell(const RectGrid &grid, int x, int y) {
+void GUI::DrawCell(const Grid &grid, int x, int y) {
     // const Pair coords = grid1_.coords(x);
     const double dx = 0.9 / grid.size_x();
     const double width = glutGet(GLUT_WINDOW_WIDTH);

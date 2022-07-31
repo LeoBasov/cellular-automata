@@ -2,21 +2,21 @@
 
 #include <gtest/gtest.h>
 
-#include "../../../src/grid/rect_grid.h"
+#include "../../../src/grid/grid.h"
 
 namespace ca {
 
-TEST(RectGrid, Constructor) {
+TEST(Grid, Constructor) {
     const uint x1 = 3;
     const uint x2 = 7;
     const uint x3 = 11;
     const uint y1 = 13;
     const uint y2 = 17;
     const uint y3 = 23;
-    const RectGrid grid = RectGrid();
-    const RectGrid grid1 = RectGrid(x1, y1);
-    const RectGrid grid2 = RectGrid(x2, y2);
-    const RectGrid grid3 = RectGrid(x3, y3);
+    const Grid grid = Grid();
+    const Grid grid1 = Grid(x1, y1);
+    const Grid grid2 = Grid(x2, y2);
+    const Grid grid3 = Grid(x3, y3);
 
     ASSERT_EQ(1, grid.size_x());
     ASSERT_EQ(3, grid1.size_x());
