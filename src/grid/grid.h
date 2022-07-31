@@ -20,8 +20,19 @@ class Grid {
     size_t size_x() const;
     size_t size_y() const;
 
-    double& value(int x, int y);
-    const double& value(int x, int y) const;
+    inline double& value(int x, int y) {
+        x = (x + size_x()) % size_x();
+        y = (y + size_y()) % size_y();
+
+        return values_.at(x).at(y);
+    }
+
+    inline const double& value(int x, int y) const {
+        x = (x + size_x()) % size_x();
+        y = (y + size_y()) % size_y();
+
+        return values_.at(x).at(y);
+    }
 
     bool active_ = false;
 
