@@ -26,11 +26,15 @@ GUI::GUI() {
 void GUI::DrawGrid(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for (size_t x = 0; x < grid1_.size_x(); x++) {
-        for (size_t y = 0; y < grid1_.size_y(); y++) {
-            if (grid1_.active_) {
+    if (grid1_.active_) {
+        for (size_t x = 0; x < grid1_.size_x(); x++) {
+            for (size_t y = 0; y < grid1_.size_y(); y++) {
                 DrawCell(grid1_, x, y);
-            } else {
+            }
+        }
+    } else {
+        for (size_t x = 0; x < grid1_.size_x(); x++) {
+            for (size_t y = 0; y < grid1_.size_y(); y++) {
                 DrawCell(grid2_, x, y);
             }
         }
