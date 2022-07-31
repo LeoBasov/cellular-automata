@@ -1,6 +1,7 @@
 #include "kernel.h"
 
 namespace ca {
+namespace kernel {
 
 double Rectangular(const Grid& grid, const int& x, const int& y) {
     double count = 0;
@@ -17,4 +18,5 @@ double Rectangular(const Grid& grid, const int& x, const int& y) {
     return count;
 }
 
+}  // namespace kernel
 }  // namespace ca
