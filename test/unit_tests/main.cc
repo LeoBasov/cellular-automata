@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include "game_of_life/game_of_life.h"
-#include "grid/grid.h"
 #include "grid/rect_grid.h"
 
 int main(int argc, char **argv) {
