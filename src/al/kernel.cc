@@ -69,6 +69,10 @@ double Kernel(const double& value, const int& x_diff, const int y_diff, Type typ
             return value * Moore(x_diff, y_diff);
             break;
         }
+        case FULL: {
+            return value * Full(x_diff, y_diff);
+            break;
+        }
         default: {
             throw Exception("undefined case", __PRETTY_FUNCTION__);
             break;
@@ -87,6 +91,8 @@ double GameOfLife(const double& x_diff, const double& y_diff) {
 }
 
 double Moore(const double& x_diff, const double& y_diff) { return Rectangular(x_diff, y_diff, 0.0, 0.4); }
+
+double Full(const double& x_diff, const double& y_diff) { return Rectangular(x_diff, y_diff, 0.0, 0.8); }
 
 }  // namespace kernel
 }  // namespace ca
