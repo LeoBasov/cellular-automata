@@ -3,19 +3,10 @@
 namespace ca {
 namespace kernel {
 
-double Rectangular(const Grid& grid, const int& x, const int& y) {
-    double count = 0;
+double Rectangular(const double& x, const double& y, const double& min, const double& max) {
+    const double range = std::sqrt(x * x + y * y) / norm_range;
 
-    count += grid.value(x - 1, y);
-    count += grid.value(x - 1, y - 1);
-    count += grid.value(x, y - 1);
-    count += grid.value(x + 1, y - 1);
-    count += grid.value(x + 1, y);
-    count += grid.value(x + 1, y + 1);
-    count += grid.value(x, y + 1);
-    count += grid.value(x - 1, y + 1);
-
-    return count;
+    return (range >= min) * (range <= max);
 }
 
 }  // namespace kernel
