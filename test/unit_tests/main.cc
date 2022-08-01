@@ -3,6 +3,7 @@
 #include "al/game_of_life.h"
 #include "al/growth_mapping.h"
 #include "al/kernel.h"
+#include "al/lenia.h"
 #include "grid/grid.h"
 
 int main(int argc, char **argv) {
