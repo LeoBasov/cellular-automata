@@ -40,5 +40,23 @@ TEST(kernel, Rectangular) {
     ASSERT_DOUBLE_EQ(tot_value, count);
 }
 
+TEST(kernel, Moore) {
+    const uint x = 9;
+    const uint y = 9;
+    const uint x_centre = 4;
+    const uint y_centre = 4;
+    Grid grid(x, y);
+
+    for (size_t i = 0; i < grid.size_x(); i++) {
+        for (size_t j = 0; j < grid.size_y(); j++) {
+            grid.value(i, j) = 1.0;
+        }
+    }
+
+    const double count = Kernel(grid, x_centre, y_centre, MOORE);
+
+    ASSERT_DOUBLE_EQ(9.0, count);
+}
+
 }  // namespace kernel
 }  // namespace ca

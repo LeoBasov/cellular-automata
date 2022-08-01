@@ -6,15 +6,17 @@ namespace kernel {
 double Kernel(const Grid& grid, const uint& x, const uint& y, Type type) {
     double count = 0.0;
 
-    count += Kernel(grid.value(x, y), 0, 0, type);
-
-    count += Kernel(grid.value(x, y + 1), 0, 1, type);
-    count += Kernel(grid.value(x - 1, y + 1), 1, 1, type);
-    count += Kernel(grid.value(x - 1, y), 1, 0, type);
     count += Kernel(grid.value(x - 1, y - 1), 1, 1, type);
-    count += Kernel(grid.value(x, y - 1), 0, 1, type);
+    count += Kernel(grid.value(x - 1, y + 0), 1, 0, type);
+    count += Kernel(grid.value(x - 1, y + 1), 1, 1, type);
+
+    count += Kernel(grid.value(x + 0, y - 1), 0, 1, type);
+    count += Kernel(grid.value(x + 0, y + 0), 0, 0, type);
+    count += Kernel(grid.value(x + 0, y + 1), 0, 1, type);
+
     count += Kernel(grid.value(x + 1, y - 1), 1, 1, type);
-    count += Kernel(grid.value(x + 1, y), 1, 0, type);
+    count += Kernel(grid.value(x + 1, y + 0), 1, 0, type);
+    count += Kernel(grid.value(x + 1, y + 1), 1, 1, type);
 
     // outer shell
     count += Kernel(grid.value(x + 1, y + 2), 1, 2, type);
@@ -63,6 +65,10 @@ double Kernel(const double& value, const int& x_diff, const int y_diff, Type typ
             return value * GameOfLife(x_diff, y_diff);
             break;
         }
+        case MOORE: {
+            return value * Moore(x_diff, y_diff);
+            break;
+        }
         default: {
             throw Exception("undefined case", __PRETTY_FUNCTION__);
             break;
@@ -80,7 +86,7 @@ double GameOfLife(const double& x_diff, const double& y_diff) {
     return Rectangular(x_diff, y_diff, 0.25, 0.75) + 0.5 * Rectangular(x_diff, y_diff, 0.0, 0.25);
 }
 
-double TestFull(const double& x_diff, const double& y_diff) { return Rectangular(x_diff, y_diff, 0.0, 1.0); }
+double Moore(const double& x_diff, const double& y_diff) { return Rectangular(x_diff, y_diff, 0.0, 0.4); }
 
 }  // namespace kernel
 }  // namespace ca
