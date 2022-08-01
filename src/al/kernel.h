@@ -10,6 +10,7 @@ namespace kernel {
 const double norm_range = 4.0;
 
 double Rectangular(const double& x, const double& y, const double& min, const double& max);
+double GameOfLife(const double& x, const double& y);
 
 }  // namespace kernel
 }  // namespace ca
