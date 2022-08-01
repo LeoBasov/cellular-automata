@@ -80,5 +80,7 @@ double GameOfLife(const double& x_diff, const double& y_diff) {
     return Rectangular(x_diff, y_diff, 0.25, 0.75) + 0.5 * Rectangular(x_diff, y_diff, 0.0, 0.25);
 }
 
+double TestFull(const double& x_diff, const double& y_diff) { return Rectangular(x_diff, y_diff, 0.0, 1.0); }
+
 }  // namespace kernel
 }  // namespace ca

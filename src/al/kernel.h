@@ -14,7 +14,10 @@ enum Type { GAME_OF_LIFE };
 double Kernel(const Grid& grid, const uint& x, const uint& y, Type type);
 double Kernel(const double& value, const int& x_diff, const int y_diff, Type type);
 double Rectangular(const double& x_diff, const double& y_diff, const double& min, const double& max);
+
+// implementation
 double GameOfLife(const double& x_diff, const double& y_diff);
+double TestFull(const double& x_diff, const double& y_diff);
 
 }  // namespace kernel
 }  // namespace ca
