@@ -3,7 +3,7 @@
 namespace ca {
 namespace kernel {
 
-double Kernel(const Grid& grid, const uint& x, const uint& y, Type type) {
+double Kernel(const Grid& grid, const int& x, const int& y, Type type) {
     double count = 0.0;
 
     count += Kernel(grid.value(x - 1, y - 1), 1, 1, type);
