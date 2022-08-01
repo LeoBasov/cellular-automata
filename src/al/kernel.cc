@@ -3,14 +3,81 @@
 namespace ca {
 namespace kernel {
 
-double Rectangular(const double& x, const double& y, const double& min, const double& max) {
-    const double range = std::sqrt(x * x + y * y) / norm_range;
+double Kernel(const Grid& grid, const uint& x, const uint& y, Type type) {
+    double count = 0.0;
+
+    count += Kernel(grid.value(x, y), 0, 0, type);
+
+    count += Kernel(grid.value(x, y + 1), 0, 1, type);
+    count += Kernel(grid.value(x - 1, y + 1), 1, 1, type);
+    count += Kernel(grid.value(x - 1, y), 1, 0, type);
+    count += Kernel(grid.value(x - 1, y - 1), 1, 1, type);
+    count += Kernel(grid.value(x, y - 1), 0, 1, type);
+    count += Kernel(grid.value(x + 1, y - 1), 1, 1, type);
+    count += Kernel(grid.value(x + 1, y), 1, 0, type);
+
+    // outer shell
+    count += Kernel(grid.value(x + 1, y + 2), 1, 2, type);
+    count += Kernel(grid.value(x, y + 2), 0, 2, type);
+    count += Kernel(grid.value(x - 1, y + 2), 1, 2, type);
+    count += Kernel(grid.value(x - 2, y + 2), 2, 2, type);
+
+    count += Kernel(grid.value(x - 2, y + 1), 2, 1, type);
+    count += Kernel(grid.value(x - 2, y), 2, 0, type);
+    count += Kernel(grid.value(x - 2, y - 1), 2, 1, type);
+    count += Kernel(grid.value(x - 2, y - 2), 2, 2, type);
+
+    count += Kernel(grid.value(x - 1, y - 2), 1, 2, type);
+    count += Kernel(grid.value(x, y - 2), 0, 2, type);
+    count += Kernel(grid.value(x + 1, y - 2), 1, 2, type);
+    count += Kernel(grid.value(x + 2, y - 2), 2, 2, type);
+
+    count += Kernel(grid.value(x + 2, y - 1), 2, 1, type);
+    count += Kernel(grid.value(x + 2, y), 2, 0, type);
+    count += Kernel(grid.value(x + 2, y + 1), 2, 1, type);
+    count += Kernel(grid.value(x + 2, y + 2), 2, 2, type);
+
+    // rings
+    count += Kernel(grid.value(x + 1, y + 3), 1, 3, type);
+    count += Kernel(grid.value(x, y + 3), 0, 2, type);
+    count += Kernel(grid.value(x - 1, y + 3), 1, 3, type);
+
+    count += Kernel(grid.value(x - 3, y + 1), 3, 1, type);
+    count += Kernel(grid.value(x - 3, y), 3, 0, type);
+    count += Kernel(grid.value(x - 3, y - 1), 3, 1, type);
+
+    count += Kernel(grid.value(x - 1, y - 3), 1, 3, type);
+    count += Kernel(grid.value(x, y - 3), 0, 3, type);
+    count += Kernel(grid.value(x + 1, y - 3), 1, 3, type);
+
+    count += Kernel(grid.value(x + 3, y + 1), 3, 1, type);
+    count += Kernel(grid.value(x + 3, y), 3, 0, type);
+    count += Kernel(grid.value(x + 3, y - 1), 3, 1, type);
+
+    return count;
+}
+
+double Kernel(const double& value, const int& x_diff, const int y_diff, Type type) {
+    switch (type) {
+        case GAME_OF_LIFE: {
+            return value * GameOfLife(x_diff, y_diff);
+            break;
+        }
+        default: {
+            throw Exception("undefined case", __PRETTY_FUNCTION__);
+            break;
+        }
+    }
+}
+
+double Rectangular(const double& x_diff, const double& y_diff, const double& min, const double& max) {
+    const double range = std::sqrt(x_diff * x_diff + y_diff * y_diff) / norm_range;
 
     return (range >= min) * (range <= max);
 }
 
-double GameOfLife(const double& x, const double& y) {
-    return Rectangular(x, y, 0.25, 0.75) + 0.5 * Rectangular(x, y, 0.0, 0.25);
+double GameOfLife(const double& x_diff, const double& y_diff) {
+    return Rectangular(x_diff, y_diff, 0.25, 0.75) + 0.5 * Rectangular(x_diff, y_diff, 0.0, 0.25);
 }
 
 }  // namespace kernel
