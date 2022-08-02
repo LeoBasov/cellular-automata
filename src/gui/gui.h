@@ -4,8 +4,7 @@
 
 #include <iostream>
 
-#include "../al/game_of_life.h"
-#include "../grid/grid.h"
+#include "../al/lenia.h"
 #include "../util/random.h"
 #include "../util/timer.h"
 
@@ -13,16 +12,15 @@ namespace ca {
 
 class GUI {
    public:
-    static Grid grid1_;
-    static Grid grid2_;
     static Random random_;
+    static Lenia lenia_;
 
    public:
     GUI();
     ~GUI() = default;
 
     static void DrawGrid(void);
-    static void DrawCell(const Grid& grid, int x, int y);
+    static void DrawCell(int x, int y);
 
     static void SpecialFunc(int key, int x, int y);
     static void KeyboardFunc(unsigned char key, int x, int y);

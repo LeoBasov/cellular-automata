@@ -6,17 +6,17 @@
 
 namespace ca {
 
-struct Config {
-    uint x = 1;
-    uint y = 1;
-    kernel::Type type = kernel::GAME_OF_LIFE;
-    double dt = 1.0;
-    double mu = 0.0;
-    double sigma = 1.0;
-};
-
 class Lenia {
    public:
+    struct Config {
+        uint x = 1;
+        uint y = 1;
+        kernel::Type type = kernel::GAME_OF_LIFE;
+        double dt = 1.0;
+        double mu = 0.0;
+        double sigma = 1.0;
+    };
+
     Lenia();
     ~Lenia() = default;
 

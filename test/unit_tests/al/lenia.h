@@ -8,7 +8,7 @@ namespace ca {
 
 TEST(Lenia, GameOfLife_Block) {
     Lenia lenia;
-    Config config;
+    Lenia::Config config;
 
     config.x = 4;
     config.y = 4;
@@ -35,7 +35,7 @@ TEST(Lenia, GameOfLife_Block) {
 
 TEST(Lenia, GameOfLife_BeeHive) {
     Lenia lenia;
-    Config config;
+    Lenia::Config config;
 
     config.x = 5;
     config.y = 6;
@@ -66,7 +66,7 @@ TEST(Lenia, GameOfLife_BeeHive) {
 
 TEST(Lenia, GameOfLife_Blinker) {
     Lenia lenia;
-    Config config;
+    Lenia::Config config;
 
     config.x = 5;
     config.y = 5;
@@ -90,7 +90,7 @@ TEST(Lenia, GameOfLife_Blinker) {
 
 TEST(Lenia, GameOfLife_Glider) {
     Lenia lenia;
-    Config config;
+    Lenia::Config config;
 
     config.x = 6;
     config.y = 6;
