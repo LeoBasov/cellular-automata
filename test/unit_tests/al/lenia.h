@@ -10,12 +10,10 @@ TEST(Lenia, GameOfLife_Block) {
     Lenia lenia;
     Lenia::Config config;
 
+    config.GameOfLife();
+
     config.x = 4;
     config.y = 4;
-    config.type = kernel::Type::GAME_OF_LIFE;
-    config.dt = 1.0;
-    config.mu = 3.0;
-    config.sigma = 0.5;
 
     lenia.SetConfig(config);
 
@@ -37,12 +35,10 @@ TEST(Lenia, GameOfLife_BeeHive) {
     Lenia lenia;
     Lenia::Config config;
 
+    config.GameOfLife();
+
     config.x = 5;
     config.y = 6;
-    config.type = kernel::Type::GAME_OF_LIFE;
-    config.dt = 1.0;
-    config.mu = 3.0;
-    config.sigma = 0.5;
 
     lenia.SetConfig(config);
 
@@ -68,12 +64,10 @@ TEST(Lenia, GameOfLife_Blinker) {
     Lenia lenia;
     Lenia::Config config;
 
+    config.GameOfLife();
+
     config.x = 5;
     config.y = 5;
-    config.type = kernel::Type::GAME_OF_LIFE;
-    config.dt = 1.0;
-    config.mu = 3.0;
-    config.sigma = 0.5;
 
     lenia.SetConfig(config);
 
@@ -92,12 +86,10 @@ TEST(Lenia, GameOfLife_Glider) {
     Lenia lenia;
     Lenia::Config config;
 
+    config.GameOfLife();
+
     config.x = 6;
     config.y = 6;
-    config.type = kernel::Type::GAME_OF_LIFE;
-    config.dt = 1.0;
-    config.mu = 3.0;
-    config.sigma = 0.5;
 
     lenia.SetConfig(config);
 

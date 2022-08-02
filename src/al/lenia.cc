@@ -42,7 +42,7 @@ void Lenia::Process() {
 }
 
 void Lenia::Process(const Grid& grid1, Grid& grid2, const int x, const int y) {
-    const double convolution = kernel::Kernel(grid1, x, y, config_.type);
+    const double convolution = kernel::Kernel(grid1, x, y, config_.radius, config_.type);
     const double growth = growth_mapping::Rectangular(convolution, config_.mu, config_.sigma);
 
     grid2.value(x, y) = grid1.value(x, y) + config_.dt * growth;

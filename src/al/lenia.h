@@ -11,10 +11,19 @@ class Lenia {
     struct Config {
         uint x = 1;
         uint y = 1;
+        uint radius = 1;
         kernel::Type type = kernel::GAME_OF_LIFE;
         double dt = 1.0;
         double mu = 0.0;
         double sigma = 1.0;
+
+        void GameOfLife() {
+            radius = 1;
+            type = kernel::GAME_OF_LIFE;
+            dt = 1.0;
+            mu = 3.0;
+            sigma = 0.5;
+        }
     };
 
     Lenia();
