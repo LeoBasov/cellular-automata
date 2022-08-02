@@ -29,6 +29,10 @@ double Kernel(const double& value, const int& x_diff, const int y_diff, const do
             return value * Full(x_diff, y_diff, radius);
             break;
         }
+        case EXPONENTIAL: {
+            return value * Exponential(x_diff, y_diff, radius);
+            break;
+        }
         default: {
             throw Exception("undefined case", __PRETTY_FUNCTION__);
             break;

@@ -7,7 +7,7 @@
 namespace ca {
 namespace kernel {
 
-enum Type { GAME_OF_LIFE, MOORE, FULL };
+enum Type { GAME_OF_LIFE, MOORE, FULL, EXPONENTIAL };
 
 double Kernel(const Grid& grid, const int& x, const int& y, const int& radius, const Type& type);
 double Kernel(const double& value, const int& x_diff, const int y_diff, const double &radius, const Type& type);
