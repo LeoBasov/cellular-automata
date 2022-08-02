@@ -11,7 +11,6 @@ const double norm_range = 4.0;
 
 enum Type { GAME_OF_LIFE, MOORE, FULL };
 
-double Kernel(const Grid& grid, const int& x, const int& y, const Type& type);
 double Kernel(const Grid& grid, const int& x, const int& y, const int& radius, const Type& type);
 double Kernel(const double& value, const int& x_diff, const int y_diff, const Type& type);
 double Rectangular(const double& x_diff, const double& y_diff, const double& min, const double& max);

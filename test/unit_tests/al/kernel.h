@@ -45,6 +45,7 @@ TEST(kernel, Moore) {
     const uint y = 9;
     const uint x_centre = 4;
     const uint y_centre = 4;
+    const uint radius = 1;
     Grid grid(x, y);
 
     for (size_t i = 0; i < grid.size_x(); i++) {
@@ -53,7 +54,7 @@ TEST(kernel, Moore) {
         }
     }
 
-    const double count = Kernel(grid, x_centre, y_centre, MOORE);
+    const double count = Kernel(grid, x_centre, y_centre, radius, MOORE);
 
     ASSERT_DOUBLE_EQ(9.0, count);
 }
@@ -63,6 +64,7 @@ TEST(kernel, Full) {
     const uint y = 9;
     const uint x_centre = 4;
     const uint y_centre = 4;
+    const uint radius = 9;
     Grid grid(x, y);
 
     for (size_t i = 0; i < grid.size_x(); i++) {
@@ -71,7 +73,7 @@ TEST(kernel, Full) {
         }
     }
 
-    const double count = Kernel(grid, x_centre, y_centre, FULL);
+    const double count = Kernel(grid, x_centre, y_centre, radius, FULL);
 
     ASSERT_DOUBLE_EQ(5.0 * 5.0 + 4.0 * 3.0, count);
 }
@@ -81,6 +83,7 @@ TEST(kernel, GameOfLife) {
     const uint y = 9;
     const uint x_centre = 4;
     const uint y_centre = 4;
+    const uint radius = 1;
     Grid grid(x, y);
 
     for (size_t i = 0; i < grid.size_x(); i++) {
@@ -89,7 +92,7 @@ TEST(kernel, GameOfLife) {
         }
     }
 
-    const double count = Kernel(grid, x_centre, y_centre, GAME_OF_LIFE);
+    const double count = Kernel(grid, x_centre, y_centre, radius, GAME_OF_LIFE);
 
     ASSERT_DOUBLE_EQ(8.5, count);
 }
@@ -99,6 +102,7 @@ TEST(kernel, GameOfLife_BeeHive) {
     const uint y = 5;
     const uint x_centre = 0;
     const uint y_centre = 1;
+    const uint radius = 1;
     Grid grid(x, y);
 
     grid.value(1, 2) = 1.0;
@@ -110,7 +114,7 @@ TEST(kernel, GameOfLife_BeeHive) {
     grid.value(2, 3) = 1.0;
     grid.value(3, 3) = 1.0;
 
-    const double count = Kernel(grid, x_centre, y_centre, GAME_OF_LIFE);
+    const double count = Kernel(grid, x_centre, y_centre, radius, GAME_OF_LIFE);
 
     ASSERT_DOUBLE_EQ(1.0, count);
 }
