@@ -59,6 +59,18 @@ double Kernel(const Grid& grid, const int& x, const int& y, Type type) {
     return count;
 }
 
+double Kernel(const Grid& grid, const int& radius, const int& x, const int& y, Type type) {
+    double count = 0.0;
+
+    for (int dx = -radius; dx <= radius; dx++) {
+        for (int dy = -radius; dy <= radius; dy++) {
+            count += Kernel(grid.value(x + dx, y + dy), dx, dy, type);
+        }
+    }
+
+    return count;
+}
+
 double Kernel(const double& value, const int& x_diff, const int y_diff, Type type) {
     switch (type) {
         case GAME_OF_LIFE: {
