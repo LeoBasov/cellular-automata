@@ -94,5 +94,26 @@ TEST(kernel, GameOfLife) {
     ASSERT_DOUBLE_EQ(8.5, count);
 }
 
+TEST(kernel, GameOfLife_BeeHive) {
+    const uint x = 6;
+    const uint y = 5;
+    const uint x_centre = 0;
+    const uint y_centre = 1;
+    Grid grid(x, y);
+
+    grid.value(1, 2) = 1.0;
+    grid.value(4, 2) = 1.0;
+
+    grid.value(2, 1) = 1.0;
+    grid.value(3, 1) = 1.0;
+
+    grid.value(2, 3) = 1.0;
+    grid.value(3, 3) = 1.0;
+
+    const double count = Kernel(grid, x_centre, y_centre, GAME_OF_LIFE);
+
+    ASSERT_DOUBLE_EQ(1.0, count);
+}
+
 }  // namespace kernel
 }  // namespace ca

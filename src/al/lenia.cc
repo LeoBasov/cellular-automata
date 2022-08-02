@@ -53,6 +53,12 @@ double& Lenia::value(int x, int y) { return grid1_.active_ ? grid1_.value(x, y) 
 
 const double& Lenia::value(int x, int y) const { return grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y); }
 
+double& Lenia::last_value(int x, int y) { return !grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y); }
+
+const double& Lenia::last_value(int x, int y) const {
+    return !grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y);
+}
+
 size_t Lenia::size_x() const { return grid1_.size_x(); }
 
 size_t Lenia::size_y() const { return grid1_.size_y(); }

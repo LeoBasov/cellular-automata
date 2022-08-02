@@ -14,8 +14,8 @@ TEST(Lenia, GameOfLife_Block) {
     config.y = 4;
     config.type = kernel::Type::GAME_OF_LIFE;
     config.dt = 1.0;
-    config.mu = 4;
-    config.sigma = 0.1;
+    config.mu = 3.0;
+    config.sigma = 0.5;
 
     lenia.SetConfig(config);
 
@@ -28,7 +28,7 @@ TEST(Lenia, GameOfLife_Block) {
 
     for (size_t x = 0; x < lenia.size_x(); x++) {
         for (size_t y = 0; y < lenia.size_y(); y++) {
-            ASSERT_DOUBLE_EQ(lenia.value(x, y), lenia.value(x, y));
+            ASSERT_DOUBLE_EQ(lenia.value(x, y), lenia.last_value(x, y));
         }
     }
 }
@@ -37,12 +37,12 @@ TEST(Lenia, GameOfLife_BeeHive) {
     Lenia lenia;
     Config config;
 
-    config.x = 4;
-    config.y = 4;
+    config.x = 5;
+    config.y = 6;
     config.type = kernel::Type::GAME_OF_LIFE;
     config.dt = 1.0;
-    config.mu = 4;
-    config.sigma = 0.1;
+    config.mu = 3.0;
+    config.sigma = 0.5;
 
     lenia.SetConfig(config);
 
@@ -59,7 +59,7 @@ TEST(Lenia, GameOfLife_BeeHive) {
 
     for (size_t x = 0; x < lenia.size_x(); x++) {
         for (size_t y = 0; y < lenia.size_y(); y++) {
-            ASSERT_DOUBLE_EQ(lenia.value(x, y), lenia.value(x, y));
+            ASSERT_DOUBLE_EQ(lenia.value(x, y), lenia.last_value(x, y));
         }
     }
 }

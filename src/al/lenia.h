@@ -26,6 +26,10 @@ class Lenia {
 
     double& value(int x, int y);
     const double& value(int x, int y) const;
+
+    double& last_value(int x, int y);
+    const double& last_value(int x, int y) const;
+
     size_t size_x() const;
     size_t size_y() const;
 
