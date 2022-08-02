@@ -49,4 +49,12 @@ void Lenia::Process(const Grid& grid1, Grid& grid2, const int x, const int y) {
     grid2.value(x, y) = std::min(1.0, std::max(0.0, grid2.value(x, y)));
 }
 
+double& Lenia::value(int x, int y) { return grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y); }
+
+const double& Lenia::value(int x, int y) const { return grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y); }
+
+size_t Lenia::size_x() const { return grid1_.size_x(); }
+
+size_t Lenia::size_y() const { return grid1_.size_y(); }
+
 }  // namespace ca

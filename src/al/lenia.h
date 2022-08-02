@@ -24,13 +24,17 @@ class Lenia {
     void Reset();
     void Process();
 
-    Grid grid1_;
-    Grid grid2_;
+    double& value(int x, int y);
+    const double& value(int x, int y) const;
+    size_t size_x() const;
+    size_t size_y() const;
 
    private:
     void Process(const Grid& grid1, Grid& grid2, const int x, const int y);
 
     Config config_;
+    Grid grid1_;
+    Grid grid2_;
 };
 
 }  // namespace ca

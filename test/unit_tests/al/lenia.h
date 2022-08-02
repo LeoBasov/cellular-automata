@@ -19,16 +19,16 @@ TEST(Lenia, GameOfLife_Block) {
 
     lenia.SetConfig(config);
 
-    lenia.grid1_.value(1, 1) = 1.0;
-    lenia.grid1_.value(2, 1) = 1.0;
-    lenia.grid1_.value(1, 2) = 1.0;
-    lenia.grid1_.value(2, 2) = 1.0;
+    lenia.value(1, 1) = 1.0;
+    lenia.value(2, 1) = 1.0;
+    lenia.value(1, 2) = 1.0;
+    lenia.value(2, 2) = 1.0;
 
     lenia.Process();
 
-    for (size_t x = 0; x < lenia.grid1_.size_x(); x++) {
-        for (size_t y = 0; y < lenia.grid1_.size_y(); y++) {
-            ASSERT_DOUBLE_EQ(lenia.grid1_.value(x, y), lenia.grid2_.value(x, y));
+    for (size_t x = 0; x < lenia.size_x(); x++) {
+        for (size_t y = 0; y < lenia.size_y(); y++) {
+            ASSERT_DOUBLE_EQ(lenia.value(x, y), lenia.value(x, y));
         }
     }
 }
