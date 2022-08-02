@@ -26,6 +26,15 @@ class Lenia {
             mu = 3.0;
             sigma = 0.5;
         }
+
+        void Lenia() {
+            radius = 12;
+            kernl_type = kernel::EXPONENTIAL;
+            growth_type = growth_mapping::EXPONENTIAL;
+            dt = 0.1;
+            mu = 0.15;
+            sigma = 0.016;
+        }
     };
 
     Lenia();
