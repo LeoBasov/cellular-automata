@@ -10,12 +10,10 @@ GUI::GUI() {
     const uint size = 50;
     Lenia::Config config;
 
+    config.GameOfLife();
+
     config.x = size;
     config.y = size;
-    config.type = kernel::Type::GAME_OF_LIFE;
-    config.dt = 1.0;
-    config.mu = 3.0;
-    config.sigma = 0.5;
 
     counter_ = 100;
 
