@@ -9,7 +9,7 @@ namespace ca {
 
 using uint = unsigned int;
 using Pair = std::pair<uint, uint>;
-using Vector = std::vector<double>;
+using vector = std::vector<std::vector<double>>;
 
 class Grid {
    public:
@@ -17,28 +17,27 @@ class Grid {
     Grid(uint x, uint y);
     ~Grid() = default;
 
-    uint x() const;
-    uint y() const;
-    const Vector& values() const;
-    Pair coords(uint idx) const;
-    uint idx(const Pair& coords) const;
-    uint size() const;
-    double& value(uint idx);
-    const double& value(uint idx) const;
-    double& value(const Pair& coords);
-    const double& value(const Pair& coords) const;
+    size_t size_x() const;
+    size_t size_y() const;
 
-    void CoordXPlus(Pair& coords) const;
-    void CoordXMinus(Pair& coords) const;
-    void CoordYPlus(Pair& coords) const;
-    void CoordYMinus(Pair& coords) const;
+    inline double& value(int x, int y) {
+        x = (x + size_x()) % size_x();
+        y = (y + size_y()) % size_y();
+
+        return values_.at(x).at(y);
+    }
+
+    inline const double& value(int x, int y) const {
+        x = (x + size_x()) % size_x();
+        y = (y + size_y()) % size_y();
+
+        return values_.at(x).at(y);
+    }
 
     bool active_ = false;
 
    private:
-    uint x_ = 1;
-    uint y_ = 1;
-    Vector values_ = Vector(x_ * y_, 0.0);
+    vector values_ = vector(1, std::vector<double>(1, 0.0));
 };
 
 }  // namespace ca
