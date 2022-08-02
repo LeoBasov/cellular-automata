@@ -3,7 +3,7 @@
 namespace ca {
 namespace kernel {
 
-double Kernel(const Grid& grid, const int& x, const int& y, Type type) {
+double Kernel(const Grid& grid, const int& x, const int& y, const Type& type) {
     double count = 0.0;
 
     count += Kernel(grid.value(x - 1, y - 1), 1, 1, type);
@@ -59,7 +59,7 @@ double Kernel(const Grid& grid, const int& x, const int& y, Type type) {
     return count;
 }
 
-double Kernel(const Grid& grid, const int& radius, const int& x, const int& y, Type type) {
+double Kernel(const Grid& grid, const int& radius, const int& x, const int& y, const Type& type) {
     double count = 0.0;
 
     for (int dx = -radius; dx <= radius; dx++) {
@@ -71,7 +71,7 @@ double Kernel(const Grid& grid, const int& radius, const int& x, const int& y, T
     return count;
 }
 
-double Kernel(const double& value, const int& x_diff, const int y_diff, Type type) {
+double Kernel(const double& value, const int& x_diff, const int y_diff, const Type& type) {
     switch (type) {
         case GAME_OF_LIFE: {
             return value * GameOfLife(x_diff, y_diff);
