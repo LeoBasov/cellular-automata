@@ -59,7 +59,7 @@ double Kernel(const Grid& grid, const int& x, const int& y, const Type& type) {
     return count;
 }
 
-double Kernel(const Grid& grid, const int& radius, const int& x, const int& y, const Type& type) {
+double Kernel(const Grid& grid, const int& x, const int& y, const int& radius, const Type& type) {
     double count = 0.0;
 
     for (int dx = -radius; dx <= radius; dx++) {
