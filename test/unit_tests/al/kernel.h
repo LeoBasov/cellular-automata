@@ -43,6 +43,28 @@ TEST(kernel, Rectangular) {
     ASSERT_DOUBLE_EQ(tot_value, count);
 }
 
+TEST(kernel, Exponential) {
+    const uint x = 3;
+    const uint y = 3;
+    const uint x_centre = 1;
+    const uint y_centre = 1;
+    const uint radius = 2;
+    Grid grid(x, y);
+    double value = 137.11;
+
+    grid.value(x_centre, y_centre) = value;
+    grid.value(x_centre + 2, y_centre) = value;
+    grid.value(x_centre + 1, y_centre) = value;
+
+    double result1 = grid.value(x_centre, y_centre) * Exponential(0.0, 0.0, radius);
+    double result2 = grid.value(x_centre + 2, y_centre) * Exponential(2.0, 0.0, radius);
+    double result3 = grid.value(x_centre + 1, y_centre) * Exponential(1.0, 0.0, radius);
+
+    ASSERT_DOUBLE_EQ(0.0, result1);
+    ASSERT_DOUBLE_EQ(0.0, result2);
+    ASSERT_DOUBLE_EQ(value, result3);
+}
+
 TEST(kernel, Moore) {
     const uint x = 9;
     const uint y = 9;

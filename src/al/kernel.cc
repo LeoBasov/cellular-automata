@@ -36,10 +36,20 @@ double Kernel(const double& value, const int& x_diff, const int y_diff, const do
     }
 }
 
+double Range(const int& x_diff, const int y_diff, const double& radius) {
+    return std::sqrt(x_diff * x_diff + y_diff * y_diff) / radius;
+}
+
 double Rectangular(const double& x_diff, const double& y_diff, const double& radius, const double& min, const double& max) {
-    const double range = std::sqrt(x_diff * x_diff + y_diff * y_diff) / radius;
+    const double range = Range(x_diff, y_diff, radius);
 
     return (range >= min) * (range <= max);
+}
+
+double Exponential(const double& x_diff, const double& y_diff, const double& radius, const double& alpha) {
+    const double range = Range(x_diff, y_diff, radius);
+
+    return std::exp(alpha - alpha / (4.0 * range * (1.0 - range)));
 }
 
 double GameOfLife(const double& x_diff, const double& y_diff, const double& radius) {
