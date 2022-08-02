@@ -7,6 +7,7 @@
 #include "../al/lenia.h"
 #include "../util/random.h"
 #include "../util/timer.h"
+#include "gui_algorithms.h"
 
 namespace ca {
 
