@@ -12,10 +12,13 @@ TEST(kernel, Rectangular) {
     const uint y = 3;
     const uint x_centre = 1;
     const uint y_centre = 1;
+    const uint radius = 1;
     Grid grid(x, y);
     double value = 0.0;
     double tot_value = 0.0;
     double count = 0.0;
+    const double min = 0.0;
+    const double max = 1.42;
 
     for (size_t i = 0; i < grid.size_x(); i++) {
         for (size_t j = 0; j < grid.size_y(); j++) {
@@ -25,17 +28,17 @@ TEST(kernel, Rectangular) {
         }
     }
 
-    count += grid.value(x_centre - 1, y_centre - 1) * Rectangular(1.0, 1.0, 0.0, 0.75);
-    count += grid.value(x_centre - 1, y_centre + 0) * Rectangular(1.0, 0.0, 0.0, 0.75);
-    count += grid.value(x_centre - 1, y_centre + 1) * Rectangular(1.0, 1.0, 0.0, 0.75);
+    count += grid.value(x_centre - 1, y_centre - 1) * Rectangular(1.0, 1.0, radius, min, max);
+    count += grid.value(x_centre - 1, y_centre + 0) * Rectangular(1.0, 0.0, radius, min, max);
+    count += grid.value(x_centre - 1, y_centre + 1) * Rectangular(1.0, 1.0, radius, min, max);
 
-    count += grid.value(x_centre - 0, y_centre - 1) * Rectangular(0.0, 1.0, 0.0, 0.75);
-    count += grid.value(x_centre - 0, y_centre + 0) * Rectangular(0.0, 0.0, 0.0, 0.75);
-    count += grid.value(x_centre - 0, y_centre + 1) * Rectangular(0.0, 1.0, 0.0, 0.75);
+    count += grid.value(x_centre - 0, y_centre - 1) * Rectangular(0.0, 1.0, radius, min, max);
+    count += grid.value(x_centre - 0, y_centre + 0) * Rectangular(0.0, 0.0, radius, min, max);
+    count += grid.value(x_centre - 0, y_centre + 1) * Rectangular(0.0, 1.0, radius, min, max);
 
-    count += grid.value(x_centre + 1, y_centre - 1) * Rectangular(0.0, 1.0, 0.0, 0.75);
-    count += grid.value(x_centre + 1, y_centre + 0) * Rectangular(0.0, 0.0, 0.0, 0.75);
-    count += grid.value(x_centre + 1, y_centre + 1) * Rectangular(0.0, 1.0, 0.0, 0.75);
+    count += grid.value(x_centre + 1, y_centre - 1) * Rectangular(0.0, 1.0, radius, min, max);
+    count += grid.value(x_centre + 1, y_centre + 0) * Rectangular(0.0, 0.0, radius, min, max);
+    count += grid.value(x_centre + 1, y_centre + 1) * Rectangular(0.0, 1.0, radius, min, max);
 
     ASSERT_DOUBLE_EQ(tot_value, count);
 }
@@ -64,7 +67,7 @@ TEST(kernel, Full) {
     const uint y = 9;
     const uint x_centre = 4;
     const uint y_centre = 4;
-    const uint radius = 9;
+    const uint radius = 3;
     Grid grid(x, y);
 
     for (size_t i = 0; i < grid.size_x(); i++) {
