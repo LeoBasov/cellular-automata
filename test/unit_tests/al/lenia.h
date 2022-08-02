@@ -64,4 +64,28 @@ TEST(Lenia, GameOfLife_BeeHive) {
     }
 }
 
+TEST(Lenia, GameOfLife_Blinker) {
+    Lenia lenia;
+    Config config;
+
+    config.x = 5;
+    config.y = 5;
+    config.type = kernel::Type::GAME_OF_LIFE;
+    config.dt = 1.0;
+    config.mu = 3.0;
+    config.sigma = 0.5;
+
+    lenia.SetConfig(config);
+
+    lenia.value(2, 3) = 1.0;
+    lenia.value(2, 2) = 1.0;
+    lenia.value(2, 1) = 1.0;
+
+    lenia.Process();
+
+    ASSERT_DOUBLE_EQ(1.0, lenia.value(1, 2));
+    ASSERT_DOUBLE_EQ(1.0, lenia.value(2, 2));
+    ASSERT_DOUBLE_EQ(1.0, lenia.value(3, 2));
+}
+
 }  // namespace ca
