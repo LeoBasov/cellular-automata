@@ -76,5 +76,23 @@ TEST(kernel, Full) {
     ASSERT_DOUBLE_EQ(5.0 * 5.0 + 4.0 * 3.0, count);
 }
 
+TEST(kernel, GameOfLife) {
+    const uint x = 9;
+    const uint y = 9;
+    const uint x_centre = 4;
+    const uint y_centre = 4;
+    Grid grid(x, y);
+
+    for (size_t i = 0; i < grid.size_x(); i++) {
+        for (size_t j = 0; j < grid.size_y(); j++) {
+            grid.value(i, j) = 1.0;
+        }
+    }
+
+    const double count = Kernel(grid, x_centre, y_centre, GAME_OF_LIFE);
+
+    ASSERT_DOUBLE_EQ(8.5, count);
+}
+
 }  // namespace kernel
 }  // namespace ca

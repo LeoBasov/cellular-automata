@@ -87,7 +87,7 @@ double Rectangular(const double& x_diff, const double& y_diff, const double& min
 }
 
 double GameOfLife(const double& x_diff, const double& y_diff) {
-    return Rectangular(x_diff, y_diff, 0.25, 0.75) + 0.5 * Rectangular(x_diff, y_diff, 0.0, 0.25);
+    return Rectangular(x_diff, y_diff, 0.25, 0.4) + 0.5 * Rectangular(x_diff, y_diff, 0.0, 0.2);
 }
 
 double Moore(const double& x_diff, const double& y_diff) { return Rectangular(x_diff, y_diff, 0.0, 0.4); }
