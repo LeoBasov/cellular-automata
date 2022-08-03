@@ -119,7 +119,7 @@ TEST(kernel, GameOfLife) {
 
     const double count = Kernel(grid, x_centre, y_centre, radius, GAME_OF_LIFE);
 
-    ASSERT_DOUBLE_EQ(8.5, count);
+    ASSERT_DOUBLE_EQ(1.0, count);
 }
 
 TEST(kernel, GameOfLife_BeeHive) {
@@ -141,7 +141,7 @@ TEST(kernel, GameOfLife_BeeHive) {
 
     const double count = Kernel(grid, x_centre, y_centre, radius, GAME_OF_LIFE);
 
-    ASSERT_DOUBLE_EQ(1.0, count);
+    ASSERT_DOUBLE_EQ(1.0 / 8.5, count);
 }
 
 }  // namespace kernel

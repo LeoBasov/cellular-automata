@@ -57,7 +57,7 @@ double Exponential(const double& x_diff, const double& y_diff, const double& rad
 }
 
 double GameOfLife(const double& x_diff, const double& y_diff, const double& radius) {
-    return Rectangular(x_diff, y_diff, radius, 1.0, 1.42) + 0.5 * Rectangular(x_diff, y_diff, radius, 0.0, 0.8);
+    return (Rectangular(x_diff, y_diff, radius, 1.0, 1.42) + 0.5 * Rectangular(x_diff, y_diff, radius, 0.0, 0.8)) / 8.5;
 }
 
 double Moore(const double& x_diff, const double& y_diff, const double& radius) { return Rectangular(x_diff, y_diff, radius, 0.0, 1.42); }

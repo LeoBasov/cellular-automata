@@ -23,8 +23,8 @@ class Lenia {
             kernl_type = kernel::GAME_OF_LIFE;
             growth_type = growth_mapping::RECTANGULAR;
             dt = 1.0;
-            mu = 3.0;
-            sigma = 0.5;
+            mu = 0.35;
+            sigma = 0.07;
         }
 
         void Lenia() {
