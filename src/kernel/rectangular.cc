@@ -10,6 +10,8 @@ void Rectangular::SetUp(const double& min, const double& max) {
 
     if (min >= max) {
         throw Exception("min >= max", __PRETTY_FUNCTION__);
+    } else if (min < 0.0) {
+        throw Exception("min < 0.0", __PRETTY_FUNCTION__);
     }
 
     min_ = min;
