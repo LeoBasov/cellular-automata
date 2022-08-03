@@ -15,23 +15,23 @@ void Rectangular::SetUp(const double& min, const double& max) {
     min_ = min;
     max_ = max;
 
-    for (int dx = -max_; dx <= max_; dx++) {
-        for (int dy = -max_; dy <= max_; dy++) {
+    for (int dx = 0; dx <= std::ceil(max_); dx++) {
+        for (int dy = 0; dy <= std::ceil(max_); dy++) {
             if (Radius(dx, dy) <= max_) {
                 count_outer += 1.0;
             }
         }
     }
 
-    for (int dx = -min_; dx <= min_; dx++) {
-        for (int dy = -min_; dy <= min_; dy++) {
+    for (int dx = 0; dx <= std::ceil(min_); dx++) {
+        for (int dy = 0; dy <= std::ceil(min_); dy++) {
             if (Radius(dx, dy) <= min_) {
                 count_inner += 1.0;
             }
         }
     }
 
-    norm_ = 1.0 / (count_outer - count_inner);
+    norm_ = 0.25 / (count_outer - count_inner);
 }
 
 double Rectangular::Value(const double& x_diff, const double& y_diff) const {
