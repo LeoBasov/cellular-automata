@@ -4,6 +4,4 @@ namespace ca {
 
 Kernel::Kernel() {}
 
-Kernel::Kernel(const double&) {}
-
 }  // namespace ca
