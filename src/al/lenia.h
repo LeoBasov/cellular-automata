@@ -1,6 +1,10 @@
 #pragma once
 
+#include <memory>
+
 #include "../grid/grid.h"
+#include "../kernel/exponential.h"
+#include "../kernel/game_of_life.h"
 #include "growth_mapping.h"
 #include "kernel.h"
 
@@ -59,6 +63,7 @@ class Lenia {
     Config config_;
     Grid grid1_;
     Grid grid2_;
+    std::shared_ptr<Kernel> kernel_;
 };
 
 }  // namespace ca

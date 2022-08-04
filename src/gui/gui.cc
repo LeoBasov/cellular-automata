@@ -7,10 +7,10 @@ Random GUI::random_;
 uint GUI::counter_;
 
 GUI::GUI() {
-    const uint size = 50;
+    const uint size = 64;
     Lenia::Config config;
 
-    config.GameOfLife();
+    config.Lenia();
 
     config.x = size;
     config.y = size;
@@ -62,7 +62,7 @@ void GUI::DrawCell(int x, int y) {
     }
     glEnd();
 
-    glBegin(GL_LINE_LOOP);
+    /*glBegin(GL_LINE_LOOP);
     {  // GL_POLYGON GL_LINE_LOOP
         glColor3f(0, 0, 0);
 
@@ -71,7 +71,7 @@ void GUI::DrawCell(int x, int y) {
         glVertex3f(x__ + dx, y__ + dy, 0.0);
         glVertex3f(x__ - dx, y__ + dy, 0.0);
     }
-    glEnd();
+    glEnd();*/
 }
 
 void GUI::SpecialFunc(int key, int x, int y) { std::cout << key << std::endl; }

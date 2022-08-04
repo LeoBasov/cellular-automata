@@ -9,6 +9,24 @@ void Lenia::SetConfig(const Config& config) {
     grid1_ = Grid(config_.x, config_.y);
     grid2_ = Grid(config_.x, config_.y);
 
+    switch (config_.kernl_type) {
+        case kernel::GAME_OF_LIFE: {
+            kernel_ = std::make_shared<GameOfLife>();
+            break;
+        }
+        case kernel::EXPONENTIAL: {
+            std::shared_ptr<Exponential> kernel = std::make_shared<Exponential>();
+
+            kernel->SetUp(config_.radius);
+            kernel_ = kernel;
+
+            break;
+        }
+        default:
+            throw Exception("undefinied kernel", __PRETTY_FUNCTION__);
+            break;
+    }
+
     Reset();
 }
 
@@ -42,7 +60,7 @@ void Lenia::Process() {
 }
 
 void Lenia::Process(const Grid& grid1, Grid& grid2, const int x, const int y) {
-    const double convolution = kernel::Kernel(grid1, x, y, config_.radius, config_.kernl_type);
+    const double convolution = kernel_->Convolute(grid1, x, y, config_.radius);
     const double growth = growth_mapping::Growth(convolution, config_.mu, config_.sigma, config_.growth_type);
 
     grid2.value(x, y) = grid1.value(x, y) + config_.dt * growth;
