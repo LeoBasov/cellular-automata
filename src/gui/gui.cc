@@ -7,7 +7,7 @@ Random GUI::random_;
 uint GUI::counter_;
 
 GUI::GUI() {
-    const uint size = 64;
+    const uint size = 100;
     Lenia::Config config;
 
     config.Lenia();
@@ -19,8 +19,14 @@ GUI::GUI() {
 
     lenia_.SetConfig(config);
 
-    for (size_t x = 0; x < lenia_.size_x(); x++) {
-        for (size_t y = 0; y < lenia_.size_y(); y++) {
+    for (size_t x = 0; x < lenia_.size_x() - 0; x++) {
+        for (size_t y = 0; y < lenia_.size_y() - 0; y++) {
+            lenia_.value(x, y) = 0.0;
+        }
+    }
+
+    for (size_t x = 30; x < 70; x++) {
+        for (size_t y = 30; y < 70; y++) {
             lenia_.value(x, y) = random_.RandomNumber();
         }
     }
