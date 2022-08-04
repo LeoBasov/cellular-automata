@@ -85,12 +85,28 @@ void GUI::SpecialFunc(int key, int x, int y) { std::cout << key << std::endl; }
 void GUI::KeyboardFunc(unsigned char key, int x, int y) {
     switch (key) {
         case 'r': {
-            /*for (uint i = 0; i < grid1_.size(); i++) {
-                grid1_.value(i) = random_.RandomNumber();
-            }*/
+            for (size_t x = 0; x < lenia_.size_x(); x++) {
+                for (size_t y = 0; y < lenia_.size_y(); y++) {
+                    lenia_.value(x, y) = random_.RandomNumber();
+                }
+            }
 
-            glutPostRedisplay();
+            // glutPostRedisplay();
 
+            break;
+        }
+        case 'o': {
+            for (size_t x = 0; x < lenia_.size_x() - 0; x++) {
+                for (size_t y = 0; y < lenia_.size_y() - 0; y++) {
+                    lenia_.value(x, y) = 0.0;
+                }
+            }
+
+            for (size_t x = 30; x < 70; x++) {
+                for (size_t y = 30; y < 70; y++) {
+                    lenia_.value(x, y) = random_.RandomNumber();
+                }
+            }
             break;
         }
     }
