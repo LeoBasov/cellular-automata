@@ -10,12 +10,12 @@ GUI::GUI() {
     const uint size = 100;
     Lenia::Config config;
 
-    config.Lenia();
+    config.GameOfLife();
 
     config.x = size;
     config.y = size;
 
-    counter_ = 100;
+    counter_ = 10;
 
     lenia_.SetConfig(config);
 

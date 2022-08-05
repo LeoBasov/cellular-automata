@@ -23,8 +23,6 @@ class FastGrid {
 
     inline const double& value(int x, int y) const { return grid_(idx(x, y)); }
 
-    bool active_ = false;
-
     VectorXd grid_;
     int x_ = 1;
     int y_ = 1;

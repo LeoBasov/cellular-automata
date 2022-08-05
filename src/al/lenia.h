@@ -4,6 +4,7 @@
 
 #include "../grid/grid.h"
 #include "../kernel/exponential.h"
+#include "../kernel/fast_game_of_life.h"
 #include "../kernel/game_of_life.h"
 #include "growth_mapping.h"
 #include "kernel.h"
@@ -45,25 +46,18 @@ class Lenia {
     ~Lenia() = default;
 
     void SetConfig(const Config& config);
-    void Reset();
     void Process();
 
     double& value(int x, int y);
     const double& value(int x, int y) const;
 
-    double& last_value(int x, int y);
-    const double& last_value(int x, int y) const;
-
     size_t size_x() const;
     size_t size_y() const;
 
    private:
-    void Process(const Grid& grid1, Grid& grid2, const int x, const int y);
-
     Config config_;
-    Grid grid1_;
-    Grid grid2_;
-    std::shared_ptr<Kernel> kernel_;
+    FastGrid grid_;
+    FastGameOfLife gof_;
 };
 
 }  // namespace ca

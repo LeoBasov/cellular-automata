@@ -2,83 +2,34 @@
 
 namespace ca {
 
-Lenia::Lenia() { Reset(); }
+Lenia::Lenia() {}
 
 void Lenia::SetConfig(const Config& config) {
     config_ = config;
-    grid1_ = Grid(config_.x, config_.y);
-    grid2_ = Grid(config_.x, config_.y);
-
-    switch (config_.kernl_type) {
-        case kernel::GAME_OF_LIFE: {
-            kernel_ = std::make_shared<GameOfLife>();
-            break;
-        }
-        case kernel::EXPONENTIAL: {
-            std::shared_ptr<Exponential> kernel = std::make_shared<Exponential>();
-
-            kernel->SetUp(config_.radius);
-            kernel_ = kernel;
-
-            break;
-        }
-        default:
-            throw Exception("undefinied kernel", __PRETTY_FUNCTION__);
-            break;
-    }
-
-    Reset();
-}
-
-void Lenia::Reset() {
-    grid1_.active_ = true;
-    grid2_.active_ = false;
+    grid_ = FastGrid(config_.x, config_.y);
+    gof_.SetUp(grid_);
 }
 
 void Lenia::Process() {
-    if (grid1_.active_ && (!grid2_.active_)) {
-        for (size_t x = 0; x < grid1_.size_x(); x++) {
-            for (size_t y = 0; y < grid1_.size_y(); y++) {
-                Process(grid1_, grid2_, x, y);
-            }
-        }
+    grid_.grid_ = gof_.kernel_ * grid_.grid_;
 
-        grid1_.active_ = false;
-        grid2_.active_ = true;
-    } else if ((!grid1_.active_) && grid2_.active_) {
-        for (size_t x = 0; x < grid1_.size_x(); x++) {
-            for (size_t y = 0; y < grid1_.size_y(); y++) {
-                Process(grid2_, grid1_, x, y);
-            }
-        }
+    for (int x = 0; x < grid_.x_; x++) {
+        for (int y = 0; y < grid_.y_; y++) {
+            const double growth =
+                growth_mapping::Growth(grid_.value(x, y), config_.mu, config_.sigma, config_.growth_type);
 
-        grid1_.active_ = true;
-        grid2_.active_ = false;
-    } else {
-        throw Exception("wrong active state of grids", __PRETTY_FUNCTION__);
+            grid_.value(x, y) += config_.dt * growth;
+            grid_.value(x, y) = std::min(1.0, std::max(0.0, grid_.value(x, y)));
+        }
     }
 }
 
-void Lenia::Process(const Grid& grid1, Grid& grid2, const int x, const int y) {
-    const double convolution = kernel_->Convolute(grid1, x, y, config_.radius);
-    const double growth = growth_mapping::Growth(convolution, config_.mu, config_.sigma, config_.growth_type);
+double& Lenia::value(int x, int y) { return grid_.value(x, y); }
 
-    grid2.value(x, y) = grid1.value(x, y) + config_.dt * growth;
-    grid2.value(x, y) = std::min(1.0, std::max(0.0, grid2.value(x, y)));
-}
+const double& Lenia::value(int x, int y) const { return grid_.value(x, y); }
 
-double& Lenia::value(int x, int y) { return grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y); }
+size_t Lenia::size_x() const { return grid_.x_; }
 
-const double& Lenia::value(int x, int y) const { return grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y); }
-
-double& Lenia::last_value(int x, int y) { return !grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y); }
-
-const double& Lenia::last_value(int x, int y) const {
-    return !grid1_.active_ ? grid1_.value(x, y) : grid2_.value(x, y);
-}
-
-size_t Lenia::size_x() const { return grid1_.size_x(); }
-
-size_t Lenia::size_y() const { return grid1_.size_y(); }
+size_t Lenia::size_y() const { return grid_.y_; }
 
 }  // namespace ca

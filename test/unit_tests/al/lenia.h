@@ -7,7 +7,7 @@
 namespace ca {
 
 TEST(Lenia, GameOfLife_Block) {
-    Lenia lenia;
+    Lenia lenia1, lenia2;
     Lenia::Config config;
 
     config.GameOfLife();
@@ -15,24 +15,31 @@ TEST(Lenia, GameOfLife_Block) {
     config.x = 4;
     config.y = 4;
 
-    lenia.SetConfig(config);
+    lenia1.SetConfig(config);
+    lenia2.SetConfig(config);
 
-    lenia.value(1, 1) = 1.0;
-    lenia.value(2, 1) = 1.0;
-    lenia.value(1, 2) = 1.0;
-    lenia.value(2, 2) = 1.0;
+    lenia1.value(1, 1) = 1.0;
+    lenia1.value(2, 1) = 1.0;
+    lenia1.value(1, 2) = 1.0;
+    lenia1.value(2, 2) = 1.0;
 
-    lenia.Process();
+    for (size_t x = 0; x < lenia1.size_x(); x++) {
+        for (size_t y = 0; y < lenia1.size_y(); y++) {
+            lenia2.value(x, y) = lenia1.value(x, y);
+        }
+    }
 
-    for (size_t x = 0; x < lenia.size_x(); x++) {
-        for (size_t y = 0; y < lenia.size_y(); y++) {
-            ASSERT_DOUBLE_EQ(lenia.value(x, y), lenia.last_value(x, y));
+    lenia1.Process();
+
+    for (size_t x = 0; x < lenia1.size_x(); x++) {
+        for (size_t y = 0; y < lenia1.size_y(); y++) {
+            ASSERT_DOUBLE_EQ(lenia1.value(x, y), lenia2.value(x, y));
         }
     }
 }
 
 TEST(Lenia, GameOfLife_BeeHive) {
-    Lenia lenia;
+    Lenia lenia1, lenia2;
     Lenia::Config config;
 
     config.GameOfLife();
@@ -40,22 +47,29 @@ TEST(Lenia, GameOfLife_BeeHive) {
     config.x = 5;
     config.y = 6;
 
-    lenia.SetConfig(config);
+    lenia1.SetConfig(config);
+    lenia2.SetConfig(config);
 
-    lenia.value(1, 2) = 1.0;
-    lenia.value(4, 2) = 1.0;
+    lenia1.value(1, 2) = 1.0;
+    lenia1.value(4, 2) = 1.0;
 
-    lenia.value(2, 1) = 1.0;
-    lenia.value(3, 1) = 1.0;
+    lenia1.value(2, 1) = 1.0;
+    lenia1.value(3, 1) = 1.0;
 
-    lenia.value(2, 3) = 1.0;
-    lenia.value(3, 3) = 1.0;
+    lenia1.value(2, 3) = 1.0;
+    lenia1.value(3, 3) = 1.0;
 
-    lenia.Process();
+    for (size_t x = 0; x < lenia1.size_x(); x++) {
+        for (size_t y = 0; y < lenia1.size_y(); y++) {
+            lenia2.value(x, y) = lenia1.value(x, y);
+        }
+    }
 
-    for (size_t x = 0; x < lenia.size_x(); x++) {
-        for (size_t y = 0; y < lenia.size_y(); y++) {
-            ASSERT_DOUBLE_EQ(lenia.value(x, y), lenia.last_value(x, y));
+    lenia1.Process();
+
+    for (size_t x = 0; x < lenia1.size_x(); x++) {
+        for (size_t y = 0; y < lenia1.size_y(); y++) {
+            ASSERT_DOUBLE_EQ(lenia1.value(x, y), lenia2.value(x, y));
         }
     }
 }
