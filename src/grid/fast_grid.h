@@ -12,19 +12,16 @@ class FastGrid {
     FastGrid(int x, int y);
     ~FastGrid() = default;
 
-    inline double& value(int x, int y) {
+    inline int idx(int x, int y) const {
         x = (x + x_) % x_;
         y = (y + y_) % y_;
 
-        return grid_(y * x_ + x);
+        return y * x_ + x;
     }
 
-    inline const double& value(int x, int y) const {
-        x = (x + x_) % x_;
-        y = (y + y_) % y_;
+    inline double& value(int x, int y) { return grid_(idx(x, y)); }
 
-        return grid_(y * x_ + x);
-    }
+    inline const double& value(int x, int y) const { return grid_(idx(x, y)); }
 
     bool active_ = false;
 
