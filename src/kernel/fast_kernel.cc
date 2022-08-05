@@ -4,7 +4,7 @@ namespace ca {
 
 FastKernel::FastKernel() {}
 
-void FastKernel::SetUp(const FastGrid &grid) {
+void FastKernel::SetUpGameOfLife(const FastGrid& grid) {
     const int size = grid.x_ * grid.y_;
     const double factor = 1.0 / 8.5;
     kernel_ = MatrixXd::Zero(size, size);
@@ -30,6 +30,34 @@ void FastKernel::SetUp(const FastGrid &grid) {
             kernel_(idx_6, idx) = factor;
             kernel_(idx_7, idx) = factor;
             kernel_(idx_8, idx) = factor;
+        }
+    }
+}
+
+void FastKernel::SetUpExponential(const FastGrid& grid, const double& radius) {
+    const int size = grid.x_ * grid.y_;
+
+    kernel_ = MatrixXd::Zero(size, size);
+    norm_ = 0.0;
+
+    for (int dx = -radius; dx <= radius; dx++) {
+        for (int dy = -radius; dy <= radius; dy++) {
+            norm_ += Exp(dx, dy, radius);
+        }
+    }
+
+    norm_ = 1.0 / norm_;
+
+    for (int x = 0; x < grid.x_; x++) {
+        for (int y = 0; y < grid.y_; y++) {
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dy = -radius; dy <= radius; dy++) {
+                    const int idx = grid.idx(x, y);
+                    const int idx_p = grid.idx(x + dx, y + dy);
+
+                    kernel_(idx_p, idx) = Exp(dx, dy, radius) * norm_;
+                }
+            }
         }
     }
 }

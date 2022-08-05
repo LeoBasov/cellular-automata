@@ -12,7 +12,7 @@ TEST(FastKernel, Full) {
     FastKernel kernel;
     FastGrid grid(x, y);
 
-    kernel.SetUp(grid);
+    kernel.SetUpGameOfLife(grid);
 
     for (int x__ = 1; x__ < 4; x__++) {
         for (int y__ = 1; y__ < 4; y__++) {

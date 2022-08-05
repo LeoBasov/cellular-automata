@@ -10,7 +10,7 @@ GUI::GUI() {
     const uint size = 100;
     Lenia::Config config;
 
-    config.GameOfLife();
+    config.Lenia();
 
     config.x = size;
     config.y = size;

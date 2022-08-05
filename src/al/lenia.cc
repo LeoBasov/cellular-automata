@@ -7,7 +7,20 @@ Lenia::Lenia() {}
 void Lenia::SetConfig(const Config& config) {
     config_ = config;
     grid_ = FastGrid(config_.x, config_.y);
-    kernel_.SetUp(grid_);
+
+    switch (config.kernl_type) {
+        case kernel::GAME_OF_LIFE: {
+            kernel_.SetUpGameOfLife(grid_);
+            break;
+        }
+        case kernel::EXPONENTIAL: {
+            kernel_.SetUpExponential(grid_, config_.radius);
+            break;
+        }
+        default: {
+            throw Exception("undefined kernel", __PRETTY_FUNCTION__);
+        }
+    }
 }
 
 void Lenia::Process() {
