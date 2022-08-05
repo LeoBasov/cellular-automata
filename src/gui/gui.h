@@ -7,6 +7,7 @@
 #include "../al/lenia.h"
 #include "../util/random.h"
 #include "../util/timer.h"
+#include "gui_algorithms.h"
 
 namespace ca {
 
@@ -20,7 +21,6 @@ class GUI {
     ~GUI() = default;
 
     static void DrawGrid(void);
-    static void DrawCell(int x, int y);
 
     static void SpecialFunc(int key, int x, int y);
     static void KeyboardFunc(unsigned char key, int x, int y);
