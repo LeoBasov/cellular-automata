@@ -6,6 +6,7 @@
 #include "al/lenia.h"
 #include "grid/fast_grid.h"
 #include "grid/grid.h"
+#include "kernel/fast_game_of_life.h"
 #include "kernel/game_of_life.h"
 #include "kernel/rectangular.h"
 
