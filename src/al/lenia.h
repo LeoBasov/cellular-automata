@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "../kernel/fast_kernel.h"
+#include "../kernel/kernel.h"
 #include "growth_mapping.h"
 
 namespace ca {
@@ -57,8 +57,8 @@ class Lenia {
 
    private:
     Config config_;
-    FastGrid grid_;
-    FastKernel kernel_;
+    Grid grid_;
+    Kernel kernel_;
 };
 
 }  // namespace ca

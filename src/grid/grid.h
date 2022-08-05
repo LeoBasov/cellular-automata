@@ -6,11 +6,11 @@ namespace ca {
 
 using namespace Eigen;
 
-class FastGrid {
+class Grid {
    public:
-    FastGrid();
-    FastGrid(int x, int y);
-    ~FastGrid() = default;
+    Grid();
+    Grid(int x, int y);
+    ~Grid() = default;
 
     inline int idx(int x, int y) const {
         x = (x + x_) % x_;

@@ -2,7 +2,7 @@
 
 #include <Eigen/Dense>
 
-#include "../grid/fast_grid.h"
+#include "../grid/grid.h"
 #include "kernel_algorithms.h"
 
 namespace ca {
@@ -10,13 +10,13 @@ namespace ca {
 using namespace Eigen;
 using namespace kernel_algorithms;
 
-class FastKernel {
+class Kernel {
    public:
-    FastKernel();
-    ~FastKernel() = default;
+    Kernel();
+    ~Kernel() = default;
 
-    void SetUpGameOfLife(const FastGrid& grid);
-    void SetUpExponential(const FastGrid& grid, const double& radius);
+    void SetUpGameOfLife(const Grid& grid);
+    void SetUpExponential(const Grid& grid, const double& radius);
 
     MatrixXd kernel_;
     double norm_ = 1.0;

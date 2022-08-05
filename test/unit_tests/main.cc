@@ -2,8 +2,8 @@
 
 #include "al/growth_mapping.h"
 #include "al/lenia.h"
-#include "grid/fast_grid.h"
-#include "kernel/fast_kernel.h"
+#include "grid/grid.h"
+#include "kernel/kernel.h"
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

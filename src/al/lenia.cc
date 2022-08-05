@@ -6,7 +6,7 @@ Lenia::Lenia() {}
 
 void Lenia::SetConfig(const Config& config) {
     config_ = config;
-    grid_ = FastGrid(config_.x, config_.y);
+    grid_ = Grid(config_.x, config_.y);
 
     switch (config.kernel_type) {
         case GAME_OF_LIFE: {

@@ -2,21 +2,21 @@
 
 #include <gtest/gtest.h>
 
-#include "../../../src/grid/fast_grid.h"
+#include "../../../src/grid/grid.h"
 
 namespace ca {
 
-TEST(FastGrid, Constructor) {
+TEST(Grid, Constructor) {
     const uint x1 = 3;
     const uint x2 = 7;
     const uint x3 = 11;
     const uint y1 = 13;
     const uint y2 = 17;
     const uint y3 = 23;
-    const FastGrid grid = FastGrid();
-    const FastGrid grid1 = FastGrid(x1, y1);
-    const FastGrid grid2 = FastGrid(x2, y2);
-    const FastGrid grid3 = FastGrid(x3, y3);
+    const Grid grid = Grid();
+    const Grid grid1 = Grid(x1, y1);
+    const Grid grid2 = Grid(x2, y2);
+    const Grid grid3 = Grid(x3, y3);
 
     ASSERT_EQ(1, grid.x_);
     ASSERT_EQ(3, grid1.x_);
@@ -41,10 +41,10 @@ TEST(FastGrid, Constructor) {
     }
 }
 
-TEST(FastGrid, value) {
+TEST(Grid, value) {
     const uint x = 5;
     const uint y = 6;
-    FastGrid grid(x, y);
+    Grid grid(x, y);
 
     grid.value(0, 0) = 1.0;
     grid.value(4, 0) = 2.0;
