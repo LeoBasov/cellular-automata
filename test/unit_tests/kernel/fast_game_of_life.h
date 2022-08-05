@@ -2,14 +2,14 @@
 
 #include <gtest/gtest.h>
 
-#include "../../../src/kernel/fast_game_of_life.h"
+#include "../../../src/kernel/fast_kernel.h"
 
 namespace ca {
 
-TEST(FastGameOfLife, Full) {
+TEST(FastKernel, Full) {
     const int x = 5;
     const int y = 5;
-    FastGameOfLife kernel;
+    FastKernel kernel;
     FastGrid grid(x, y);
 
     kernel.SetUp(grid);

@@ -4,7 +4,7 @@
 
 #include "../grid/grid.h"
 #include "../kernel/exponential.h"
-#include "../kernel/fast_game_of_life.h"
+#include "../kernel/fast_kernel.h"
 #include "../kernel/game_of_life.h"
 #include "growth_mapping.h"
 #include "kernel.h"
@@ -57,7 +57,7 @@ class Lenia {
    private:
     Config config_;
     FastGrid grid_;
-    FastGameOfLife gof_;
+    FastKernel gof_;
 };
 
 }  // namespace ca

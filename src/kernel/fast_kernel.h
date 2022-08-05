@@ -7,10 +7,10 @@
 using namespace Eigen;
 
 namespace ca {
-class FastGameOfLife {
+class FastKernel {
    public:
-    FastGameOfLife();
-    ~FastGameOfLife() = default;
+    FastKernel();
+    ~FastKernel() = default;
 
     void SetUp(const FastGrid& grid);
 

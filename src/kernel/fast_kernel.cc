@@ -1,10 +1,10 @@
-#include "fast_game_of_life.h"
+#include "fast_kernel.h"
 
 namespace ca {
 
-FastGameOfLife::FastGameOfLife() {}
+FastKernel::FastKernel() {}
 
-void FastGameOfLife::SetUp(const FastGrid &grid) {
+void FastKernel::SetUp(const FastGrid &grid) {
     const int size = grid.x_ * grid.y_;
     const double factor = 1.0 / 8.5;
     kernel_ = MatrixXd::Zero(size, size);
