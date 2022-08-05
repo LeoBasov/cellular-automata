@@ -9,6 +9,7 @@ using namespace Eigen;
 class FastGrid {
    public:
     FastGrid();
+    FastGrid(int x, int y);
     ~FastGrid() = default;
 
     inline double& value(int x, int y) {
