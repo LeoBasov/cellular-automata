@@ -33,51 +33,36 @@ GUI::GUI() {
 }
 
 void GUI::DrawGrid(void) {
+    const double X = glutGet(GLUT_WINDOW_WIDTH);
+    const double Y = glutGet(GLUT_WINDOW_HEIGHT);
+    const double dx = X > Y ? (Y / X) * 2.0 / lenia_.size_x() : 2.0 / lenia_.size_x();
+    const double dy = Y > X ? (X / Y) * 2.0 / lenia_.size_y() : 2.0 / lenia_.size_y();
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     for (size_t x = 0; x < lenia_.size_x(); x++) {
         for (size_t y = 0; y < lenia_.size_y(); y++) {
-            DrawCell(x, y);
+            const double color1 = gui_algorithms::Red(lenia_.value(x, y));
+            const double color2 = gui_algorithms::Green(lenia_.value(x, y));
+            const double color3 = gui_algorithms::Blue(lenia_.value(x, y));
+            const double x__ = x * dx - 1.0;
+            const double y__ = y * dy - 1.0;
+
+            glBegin(GL_POLYGON);
+            {  // GL_POLYGON GL_LINE_LOOP
+                glColor3f(color1, color2, color3);
+
+                glVertex3f(x__, y__, 0.0);
+                glVertex3f(x__ + dx, y__, 0.0);
+                glVertex3f(x__ + dx, y__ + dy, 0.0);
+                glVertex3f(x__, y__ + dy, 0.0);
+            }
+            glEnd();
         }
     }
 
     // glFlush();
     glutSwapBuffers();
-}
-
-void GUI::DrawCell(int x, int y) {
-    const double dx = 0.9 / lenia_.size_x();
-    const double width = glutGet(GLUT_WINDOW_WIDTH);
-    const double height = glutGet(GLUT_WINDOW_HEIGHT);
-    const double dy = dx * width / height;
-    const double color1 = gui_algorithms::Red(lenia_.value(x, y));
-    const double color2 = gui_algorithms::Green(lenia_.value(x, y));
-    const double color3 = gui_algorithms::Blue(lenia_.value(x, y));
-
-    const double x__ = dx * (2 * x) + dx - 0.9;
-    const double y__ = dy * (2 * y) + dy - 0.9;
-
-    glBegin(GL_POLYGON);
-    {  // GL_POLYGON GL_LINE_LOOP
-        glColor3f(color1, color2, color3);
-
-        glVertex3f(x__ - dx, y__ - dy, 0.0);
-        glVertex3f(x__ + dx, y__ - dy, 0.0);
-        glVertex3f(x__ + dx, y__ + dy, 0.0);
-        glVertex3f(x__ - dx, y__ + dy, 0.0);
-    }
-    glEnd();
-
-    /*glBegin(GL_LINE_LOOP);
-    {  // GL_POLYGON GL_LINE_LOOP
-        glColor3f(0, 0, 0);
-
-        glVertex3f(x__ - dx, y__ - dy, 0.0);
-        glVertex3f(x__ + dx, y__ - dy, 0.0);
-        glVertex3f(x__ + dx, y__ + dy, 0.0);
-        glVertex3f(x__ - dx, y__ + dy, 0.0);
-    }
-    glEnd();*/
 }
 
 void GUI::SpecialFunc(int key, int x, int y) { std::cout << key << std::endl; }
