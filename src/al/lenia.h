@@ -57,7 +57,7 @@ class Lenia {
    private:
     Config config_;
     FastGrid grid_;
-    FastKernel gof_;
+    FastKernel kernel_;
 };
 
 }  // namespace ca

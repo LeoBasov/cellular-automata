@@ -7,11 +7,11 @@ Lenia::Lenia() {}
 void Lenia::SetConfig(const Config& config) {
     config_ = config;
     grid_ = FastGrid(config_.x, config_.y);
-    gof_.SetUp(grid_);
+    kernel_.SetUp(grid_);
 }
 
 void Lenia::Process() {
-    grid_.grid_ = gof_.kernel_ * grid_.grid_;
+    grid_.grid_ = kernel_.kernel_ * grid_.grid_;
 
     for (int x = 0; x < grid_.x_; x++) {
         for (int y = 0; y < grid_.y_; y++) {
