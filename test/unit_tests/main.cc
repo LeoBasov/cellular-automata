@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include "al/game_of_life.h"
 #include "al/growth_mapping.h"
 #include "al/kernel.h"
 #include "al/lenia.h"
