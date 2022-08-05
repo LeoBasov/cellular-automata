@@ -38,6 +38,24 @@ void Lenia::Process() {
     }
 }
 
+void Lenia::ChangeKernel(kernel::Type kernl_type) {
+    switch (kernl_type) {
+        case kernel::GAME_OF_LIFE: {
+            config_.GameOfLife();
+            kernel_.SetUpGameOfLife(grid_);
+            break;
+        }
+        case kernel::EXPONENTIAL: {
+            config_.Lenia();
+            kernel_.SetUpExponential(grid_, config_.radius);
+            break;
+        }
+        default: {
+            throw Exception("undefined kernel", __PRETTY_FUNCTION__);
+        }
+    }
+}
+
 double& Lenia::value(int x, int y) { return grid_.value(x, y); }
 
 const double& Lenia::value(int x, int y) const { return grid_.value(x, y); }

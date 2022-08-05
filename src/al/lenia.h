@@ -48,6 +48,8 @@ class Lenia {
     void SetConfig(const Config& config);
     void Process();
 
+    void ChangeKernel(kernel::Type kernl_type);
+
     double& value(int x, int y);
     const double& value(int x, int y) const;
 
