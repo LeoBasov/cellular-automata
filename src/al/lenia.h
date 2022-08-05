@@ -2,22 +2,21 @@
 
 #include <memory>
 
-#include "../grid/grid.h"
-#include "../kernel/exponential.h"
 #include "../kernel/fast_kernel.h"
-#include "../kernel/game_of_life.h"
 #include "growth_mapping.h"
-#include "kernel.h"
 
 namespace ca {
 
 class Lenia {
    public:
+    enum KernelType { GAME_OF_LIFE, EXPONENTIAL };
+
+   public:
     struct Config {
         uint x = 1;
         uint y = 1;
         uint radius = 1;
-        kernel::Type kernl_type = kernel::GAME_OF_LIFE;
+        KernelType kernel_type = GAME_OF_LIFE;
         growth_mapping::Type growth_type = growth_mapping::RECTANGULAR;
         double dt = 1.0;
         double mu = 0.0;
@@ -25,7 +24,7 @@ class Lenia {
 
         void GameOfLife() {
             radius = 1;
-            kernl_type = kernel::GAME_OF_LIFE;
+            kernel_type = GAME_OF_LIFE;
             growth_type = growth_mapping::RECTANGULAR;
             dt = 1.0;
             mu = 0.35;
@@ -34,7 +33,7 @@ class Lenia {
 
         void Lenia() {
             radius = 12;
-            kernl_type = kernel::EXPONENTIAL;
+            kernel_type = EXPONENTIAL;
             growth_type = growth_mapping::EXPONENTIAL;
             dt = 0.1;
             mu = 0.135;
@@ -48,7 +47,7 @@ class Lenia {
     void SetConfig(const Config& config);
     void Process();
 
-    void ChangeKernel(kernel::Type kernl_type);
+    void ChangeKernel(KernelType kernl_type);
 
     double& value(int x, int y);
     const double& value(int x, int y) const;

@@ -8,12 +8,12 @@ void Lenia::SetConfig(const Config& config) {
     config_ = config;
     grid_ = FastGrid(config_.x, config_.y);
 
-    switch (config.kernl_type) {
-        case kernel::GAME_OF_LIFE: {
+    switch (config.kernel_type) {
+        case GAME_OF_LIFE: {
             kernel_.SetUpGameOfLife(grid_);
             break;
         }
-        case kernel::EXPONENTIAL: {
+        case EXPONENTIAL: {
             kernel_.SetUpExponential(grid_, config_.radius);
             break;
         }
@@ -38,14 +38,14 @@ void Lenia::Process() {
     }
 }
 
-void Lenia::ChangeKernel(kernel::Type kernl_type) {
+void Lenia::ChangeKernel(KernelType kernl_type) {
     switch (kernl_type) {
-        case kernel::GAME_OF_LIFE: {
+        case GAME_OF_LIFE: {
             config_.GameOfLife();
             kernel_.SetUpGameOfLife(grid_);
             break;
         }
-        case kernel::EXPONENTIAL: {
+        case EXPONENTIAL: {
             config_.Lenia();
             kernel_.SetUpExponential(grid_, config_.radius);
             break;
