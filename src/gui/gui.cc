@@ -21,15 +21,15 @@ GUI::GUI() {
 
     for (size_t x = 0; x < lenia_.size_x() - 0; x++) {
         for (size_t y = 0; y < lenia_.size_y() - 0; y++) {
-            lenia_.value(x, y) = 0.0;
-        }
-    }
-
-    for (size_t x = 30; x < 70; x++) {
-        for (size_t y = 30; y < 70; y++) {
             lenia_.value(x, y) = random_.RandomNumber();
         }
     }
+
+    /*for (size_t x = 30; x < 70; x++) {
+        for (size_t y = 30; y < 70; y++) {
+            lenia_.value(x, y) = random_.RandomNumber();
+        }
+    }*/
 }
 
 void GUI::DrawGrid(void) {

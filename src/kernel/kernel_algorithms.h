@@ -9,11 +9,14 @@ inline double Radius(const double& x_diff, const double& y_diff) {
     return std::sqrt(x_diff * x_diff + y_diff * y_diff);
 }
 
-inline double Exp(const double& x_diff, const double& y_diff, const double& radius) {
-    const double radius__ = Radius(x_diff, y_diff) / radius;
+inline double Bell(const double& x, const double& m, const double& s) {
+    return std::exp(-std::pow((x - m) / s, 2) / 2.0);
+}
 
-    // return std::exp(-std::pow((radius-0.5)/0.15,2) / 2)*2.0 - 1.0;
-    return std::exp(-std::pow((radius__ - 0.5) / 0.15, 2) / 2);
+inline double Exp(const double& x_diff, const double& y_diff, const double& radius) {
+    const double D = Radius(x_diff, y_diff) / radius;
+
+    return (D < 1.0) * Bell(D, 0.5, 0.15);
 }
 
 }  // namespace kernel_algorithms
