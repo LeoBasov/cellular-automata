@@ -37,8 +37,8 @@ class Lenia {
             kernl_type = kernel::EXPONENTIAL;
             growth_type = growth_mapping::EXPONENTIAL;
             dt = 0.1;
-            mu = 0.15;
-            sigma = 0.016;
+            mu = 0.135;
+            sigma = 0.015;
         }
     };
 

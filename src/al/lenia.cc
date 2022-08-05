@@ -29,7 +29,8 @@ void Lenia::Process() {
     for (int x = 0; x < grid_.x_; x++) {
         for (int y = 0; y < grid_.y_; y++) {
             const int idx = grid_.idx(x, y);
-            const double growth = 2.0 * std::exp(-std::pow((intermediate_vals(idx) - 0.135) / 0.015, 2) / 2.0) - 1.0;
+            const double growth =
+                growth_mapping::Growth(intermediate_vals(idx), config_.mu, config_.sigma, config_.growth_type);
 
             grid_.value(x, y) += config_.dt * growth;
             grid_.value(x, y) = std::min(1.0, std::max(0.0, grid_.value(x, y)));
