@@ -1,21 +1,24 @@
 #pragma once
 
+#include <Eigen/Dense>
+
 #include "../grid/grid.h"
+#include "kernel_algorithms.h"
 
 namespace ca {
 
-using uint = unsigned int;
+using namespace Eigen;
+using namespace kernel_algorithms;
 
 class Kernel {
    public:
     Kernel();
     ~Kernel() = default;
 
-    virtual double Value(const double& x_diff, const double& y_diff) const = 0;
-    double Convolute(const Grid& grid, const int& x, const int& y, const int& radius) const;
-    double GetNorm() const;
+    void SetUpGameOfLife(const Grid& grid);
+    void SetUpExponential(const Grid& grid, const double& radius);
 
-   protected:
+    MatrixXd kernel_;
     double norm_ = 1.0;
 };
 

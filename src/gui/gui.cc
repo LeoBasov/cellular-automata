@@ -94,6 +94,16 @@ void GUI::KeyboardFunc(unsigned char key, int x, int y) {
             }
             break;
         }
+        case 'g': {
+            lenia_.ChangeKernel(Lenia::KernelType::GAME_OF_LIFE);
+
+            break;
+        }
+        case 'l': {
+            lenia_.ChangeKernel(Lenia::KernelType::EXPONENTIAL);
+
+            break;
+        }
     }
 }
 

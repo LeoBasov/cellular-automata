@@ -2,12 +2,8 @@
 
 namespace ca {
 
-Grid::Grid() {}
+Grid::Grid() { grid_ = VectorXd::Zero(x_ * y_); }
 
-Grid::Grid(uint x, uint y) : values_(vector(x, std::vector<double>(y, 0.0))) {}
-
-size_t Grid::size_x() const { return values_.size(); }
-
-size_t Grid::size_y() const { return values_.front().size(); }
+Grid::Grid(int x, int y) : x_(x), y_(y) { grid_ = VectorXd::Zero(x_ * y_); }
 
 }  // namespace ca

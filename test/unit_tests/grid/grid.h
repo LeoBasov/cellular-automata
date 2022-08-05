@@ -18,19 +18,25 @@ TEST(Grid, Constructor) {
     const Grid grid2 = Grid(x2, y2);
     const Grid grid3 = Grid(x3, y3);
 
-    ASSERT_EQ(1, grid.size_x());
-    ASSERT_EQ(3, grid1.size_x());
-    ASSERT_EQ(7, grid2.size_x());
-    ASSERT_EQ(11, grid3.size_x());
+    ASSERT_EQ(1, grid.x_);
+    ASSERT_EQ(3, grid1.x_);
+    ASSERT_EQ(7, grid2.x_);
+    ASSERT_EQ(11, grid3.x_);
 
-    ASSERT_EQ(1, grid.size_y());
-    ASSERT_EQ(13, grid1.size_y());
-    ASSERT_EQ(17, grid2.size_y());
-    ASSERT_EQ(23, grid3.size_y());
+    ASSERT_EQ(1, grid.y_);
+    ASSERT_EQ(13, grid1.y_);
+    ASSERT_EQ(17, grid2.y_);
+    ASSERT_EQ(23, grid3.y_);
 
-    for (size_t x = 0; x < grid.size_x(); x++) {
-        for (size_t y = 0; y < grid.size_y(); y++) {
+    for (int x = 0; x < grid.x_; x++) {
+        for (int y = 0; y < grid.y_; y++) {
             ASSERT_EQ(0.0, grid.value(x, y));
+        }
+    }
+
+    for (int x = 0; x < grid1.x_; x++) {
+        for (int y = 0; y < grid1.y_; y++) {
+            ASSERT_EQ(0.0, grid1.value(x, y));
         }
     }
 }

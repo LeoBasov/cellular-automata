@@ -6,14 +6,14 @@ Lenia::Lenia() {}
 
 void Lenia::SetConfig(const Config& config) {
     config_ = config;
-    grid_ = FastGrid(config_.x, config_.y);
+    grid_ = Grid(config_.x, config_.y);
 
-    switch (config.kernl_type) {
-        case kernel::GAME_OF_LIFE: {
+    switch (config.kernel_type) {
+        case GAME_OF_LIFE: {
             kernel_.SetUpGameOfLife(grid_);
             break;
         }
-        case kernel::EXPONENTIAL: {
+        case EXPONENTIAL: {
             kernel_.SetUpExponential(grid_, config_.radius);
             break;
         }
@@ -34,6 +34,24 @@ void Lenia::Process() {
 
             grid_.value(x, y) += config_.dt * growth;
             grid_.value(x, y) = std::min(1.0, std::max(0.0, grid_.value(x, y)));
+        }
+    }
+}
+
+void Lenia::ChangeKernel(KernelType kernl_type) {
+    switch (kernl_type) {
+        case GAME_OF_LIFE: {
+            config_.GameOfLife();
+            kernel_.SetUpGameOfLife(grid_);
+            break;
+        }
+        case EXPONENTIAL: {
+            config_.Lenia();
+            kernel_.SetUpExponential(grid_, config_.radius);
+            break;
+        }
+        default: {
+            throw Exception("undefined kernel", __PRETTY_FUNCTION__);
         }
     }
 }
